@@ -7,7 +7,11 @@ export default function EnterForm() {
                 <div className="form">
                     <div className="form-content">
                         <h1>Enter</h1>
-                        <form></form>
+                        <form>
+                            <input placeholder="Mail" type="text"/>
+                            <input placeholder="Password" type="password"/>
+                            <a href="#">Go</a>
+                        </form>
                     </div>
                 </div>
             </div>
