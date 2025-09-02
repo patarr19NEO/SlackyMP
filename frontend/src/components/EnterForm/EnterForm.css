@@ -1,0 +1,17 @@
+.form {
+    width: 438px;
+    height: 334px;
+    background-color: #D9D9D9;
+}
+
+.form-window {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}
+
+.form-content {
+    display: flex;
+    justify-content: center;
+}
