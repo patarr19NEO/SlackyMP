@@ -42,4 +42,22 @@ form a {
     text-align: center;
     color: #fff;
     font-size: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -20px;
+}
+
+form p {
+    color: red;
+    margin: 0; /* Remove default margin */
+}
+
+.error {
+    min-height: 30px; /* Минимальная высота для стабильности */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: -20px;
 }
