@@ -8,10 +8,10 @@ export function EnterForm() {
     const [loading, setLoading] = useState<boolean>(false)
     const [error, setError] = useState<string>()
 
-    const handleSubmit = (e: React.MouseEvent) => {
+    const handleSubmit = async (e: React.MouseEvent) => {
         setLoading(true)
         e.preventDefault()
-        if (mail === "" || password === "" || !mail.includes("@")) {
+        if (mail === "" || password === "" || !mail.includes("@") || mail.includes(" ") || password.includes(" ")) {
             setError("Invalid input!")
             setLoading(false)
             return
@@ -21,14 +21,27 @@ export function EnterForm() {
 
         setLoading(true)
         try {
-            fetch("http://localhost:8080/api/users", {
+            const response = await fetch("http://127.0.0.1:5000/api/users", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
+                body: JSON.stringify({
+                    username: mail,
+                    password: password,
+                })
             })
+
+            if (!response.ok) {
+                throw new Error("Failed to fetch users ", response.status)
+            }
+
+            const data: any = await response.json
+            console.log("got data: ", data)
         } catch (err: any) {
-            setError(err)
+            setError(err.message)
+            alert("error!: " + err.message)
+            setLoading(false)
         }
     }
 
