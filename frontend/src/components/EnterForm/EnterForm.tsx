@@ -2,7 +2,7 @@ import "./EnterForm.css"
 import {useState} from "react";
 import * as React from "react";
 
-export default function EnterForm() {
+export function EnterForm() {
     const [mail, setMail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
     const [loading, setLoading] = useState<boolean>(false)
@@ -21,8 +21,13 @@ export default function EnterForm() {
 
         setLoading(true)
         try {
-            
-        } catch (err: string) {
+            fetch("http://localhost:8080/api/users", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+        } catch (err: any) {
             setError(err)
         }
     }
