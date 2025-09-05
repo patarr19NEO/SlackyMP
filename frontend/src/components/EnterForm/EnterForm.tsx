@@ -10,6 +10,7 @@ export function EnterForm() {
 
     const handleSubmit = async (e: React.MouseEvent) => {
         setLoading(true)
+        //setError(false)
         e.preventDefault()
         if (mail === "" || password === "" || !mail.includes("@") || mail.includes(" ") || password.includes(" ")) {
             setError("Invalid input!")
@@ -17,9 +18,7 @@ export function EnterForm() {
             return
         }
 
-        alert(mail + " " + password)
-
-        setLoading(true)
+        console.log("Sent data: " + mail + " " + password)
         try {
             const response = await fetch("http://127.0.0.1:5000/api/users", {
                 method: "POST",
@@ -33,11 +32,13 @@ export function EnterForm() {
             })
 
             if (!response.ok) {
-                throw new Error("Failed to fetch users ", response.status)
+                throw new Error("Failed to fetch users ")
             }
 
             const data: any = await response.json
+            setError("")
             console.log("got data: ", data)
+            alert(data.message)
         } catch (err: any) {
             setError(err.message)
             alert("error!: " + err.message)
