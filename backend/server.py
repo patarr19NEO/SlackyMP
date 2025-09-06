@@ -6,6 +6,11 @@ from datetime import datetime
 app = Flask(__name__)
 CORS(app)
 
+USER_ACCOUNT = {
+    "email": "yura@mail.ru",
+    "password": "qwerty1234"
+}
+
 @app.route("/api/users", methods=["POST"])
 def users():
     try:
@@ -16,10 +21,17 @@ def users():
 
         print(f"got data:\n{username}\n{password}")
 
-        return jsonify({
-            "status": "success",
-            "message": f"server successfully got data: {username} and {password}"
-        }), 200
+        if username == USER_ACCOUNT["email"] and password == USER_ACCOUNT["password"]:
+            return jsonify({
+                "status": "success",
+                "message": f"server successfully got data in DataBase: {username} and {password}"
+            }), 200
+        else:
+            return jsonify({
+                "status": "failed",
+                "message": f"server not found data in DataBase: {username} and {password}"
+            }), 404
+
     except Exception as err:
         print("error ", err)
         return jsonify({

@@ -30,15 +30,19 @@ export function EnterForm() {
                     password: password,
                 })
             })
+            const data: any = await response.json() // mistake was here
+            console.log("got data: ", data)
 
             if (!response.ok) {
-                throw new Error("Failed to fetch users ")
+                setError(data.message || "Login failed")
+                alert(data.message)
+                setLoading(false)
+                return // this is important too
             }
 
-            const data: any = await response.json
-            setError("")
-            console.log("got data: ", data)
             alert(data.message)
+            setLoading(false)
+
         } catch (err: any) {
             setError(err.message)
             alert("error!: " + err.message)
