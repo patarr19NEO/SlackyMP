@@ -7,4 +7,5 @@ header {
     align-items: center;
     margin: 42px auto 0;
     border-radius: 20px;
+    gap: 16px;
 }

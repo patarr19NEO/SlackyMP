@@ -5,6 +5,7 @@ export default function Header() {
         <>
             <header>
                 <h1 className="logo">Slacky</h1>
+                <p>Веб-Приложения для работников ПВЗ SpackyMP</p>
             </header>
         </>
     )
