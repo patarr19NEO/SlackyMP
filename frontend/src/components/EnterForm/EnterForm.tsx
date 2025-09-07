@@ -2,7 +2,11 @@ import "./EnterForm.css"
 import {useState} from "react";
 import * as React from "react";
 
-export function EnterForm() {
+interface Props {
+    isSuccess: () => void
+}
+
+export default function EnterForm({ isSuccess }: Props) {
     const [mail, setMail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
     const [loading, setLoading] = useState<boolean>(false)
@@ -42,6 +46,7 @@ export function EnterForm() {
 
             alert(data.message)
             setLoading(false)
+            isSuccess()
 
         } catch (err: any) {
             setError(err.message)
