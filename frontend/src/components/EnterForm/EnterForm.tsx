@@ -46,6 +46,7 @@ export default function EnterForm({ isSuccess }: Props) {
 
             alert(data.message)
             setLoading(false)
+            localStorage.setItem("user", data.user)
             isSuccess()
 
         } catch (err: any) {
