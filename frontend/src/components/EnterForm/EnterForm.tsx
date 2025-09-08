@@ -2,7 +2,11 @@ import "./EnterForm.css"
 import {useState} from "react";
 import * as React from "react";
 
-export default function EnterForm() {
+interface EnterFormProps {
+    onLoginSuccess: () => void;
+}
+
+export default function EnterForm({ onLoginSuccess }: EnterFormProps) {
     const [mail, setMail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
     const [loading, setLoading] = useState<boolean>(false)
@@ -44,6 +48,7 @@ export default function EnterForm() {
             setLoading(false)
             localStorage.setItem("user", JSON.stringify(data.user))
             localStorage.setItem("isLoggedIn", "true")
+            onLoginSuccess()
 
         } catch (err: any) {
             setError(err.message)
