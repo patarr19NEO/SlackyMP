@@ -46,7 +46,7 @@ export default function EnterForm({ onLoginSuccess }: EnterFormProps) {
 
             alert(data.message)
             setLoading(false)
-            localStorage.setItem("user", JSON.stringify(data.user))
+            localStorage.setItem("user", `${JSON.stringify(data.user).replace('"', '')}`)
             localStorage.setItem("isLoggedIn", "true")
             onLoginSuccess()
 
