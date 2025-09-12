@@ -23,11 +23,11 @@ def users():
 
         print(f"got data:\n{username}\n{password}")
         with open(logs_file, "a") as file:
-            file.write(f"[INFO] {datetime.now()}: got data:\n{username}\n{password}")
+            file.write(f"\n[INFO] {datetime.now()}: got data:\n{username}\n{password}")
 
         if username == USER_ACCOUNT["email"] and password == USER_ACCOUNT["password"]:
             with open(logs_file, "a") as file:
-                file.write(f"[MESSAGE] {datetime.now()}: server successfully got data in DataBase: {username} and {password} with code 200")
+                file.write(f"\n[MESSAGE] {datetime.now()}: server successfully got data in DataBase: {username} and {password} with code 200")
             return jsonify({
                 "status": "success",
                 "message": f"server successfully got data in DataBase: {username} and {password}",
@@ -35,7 +35,7 @@ def users():
             }), 200
         else:
             with open(logs_file, "a") as file:
-                file.write(f"[ERROR] {datetime.now()}: server not found data in DataBase: {username} and {password} with code 404")
+                file.write(f"\n[ERROR] {datetime.now()}: server not found data in DataBase: {username} and {password} with code 404")
             return jsonify({
                 "status": "failed",
                 "message": f"server not found data in DataBase: {username} and {password}"
@@ -44,7 +44,7 @@ def users():
     except Exception as err:
         print("error ", err)
         with open(logs_file, "a") as file:
-            file.write(f"[ERROR] {datetime.now()}: server failed to get data with code 500")
+            file.write(f"\n[ERROR] {datetime.now()}: server failed to get data with code 500")
         return jsonify({
             "status": "error",
             "message": "server failed to get data"
