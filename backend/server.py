@@ -11,6 +11,8 @@ USER_ACCOUNT = {
     "password": "qwerty1234"
 }
 
+logs_file = "logs.txt"
+
 @app.route("/api/users", methods=["POST"])
 def users():
     try:
@@ -20,14 +22,20 @@ def users():
         password = data.get("password")
 
         print(f"got data:\n{username}\n{password}")
+        with open(logs_file, "w") as file:
+            file.write(f"[INFO]: got data:\n{username}\n{password}")
 
         if username == USER_ACCOUNT["email"] and password == USER_ACCOUNT["password"]:
+            with open(logs_file, "w") as file:
+                file.write(f"[MESSAGE]: server successfully got data in DataBase: {username} and {password} with code 200")
             return jsonify({
                 "status": "success",
                 "message": f"server successfully got data in DataBase: {username} and {password}",
                 "user": username
             }), 200
         else:
+            with open(logs_file, "w") as file:
+                file.write(f"[ERROR]: server not found data in DataBase: {username} and {password} with code 404")
             return jsonify({
                 "status": "failed",
                 "message": f"server not found data in DataBase: {username} and {password}"
@@ -35,6 +43,8 @@ def users():
 
     except Exception as err:
         print("error ", err)
+        with open(logs_file, "w") as file:
+            file.write("[ERROR]: server failed to get data with code 500")
         return jsonify({
             "status": "error",
             "message": "server failed to get data"
