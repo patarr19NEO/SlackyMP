@@ -24,7 +24,8 @@ def users():
         if username == USER_ACCOUNT["email"] and password == USER_ACCOUNT["password"]:
             return jsonify({
                 "status": "success",
-                "message": f"server successfully got data in DataBase: {username} and {password}"
+                "message": f"server successfully got data in DataBase: {username} and {password}",
+                "user": username
             }), 200
         else:
             return jsonify({

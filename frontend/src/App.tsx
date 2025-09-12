@@ -5,15 +5,22 @@ import Account from "./components/Account/Account.tsx"
 import {useState} from "react";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true)
+
+  const handleLogOut = () => {
+      setIsLoggedIn(false)
+      localStorage.removeItem("user")
+      localStorage.removeItem("isLoggedIn")
+  }
+
   const handleLogIn = () => {
       setIsLoggedIn(true)
   }
 
   return (
     <>
-        <Header />
-        {isLoggedIn ? (<Account />) : (<EnterForm isSuccess={handleLogIn} />)}
+        <Header onLogout={handleLogOut} isLoggedIn={isLoggedIn} />
+        {isLoggedIn ? (<Account />) : (<EnterForm onLoginSuccess={handleLogIn} />)}
     </>
   )
 }
