@@ -4,7 +4,7 @@ import OrdersList from "../OrdersList/OrdersList"
 import OrdersToBeGiven from "../OrdersToBeGiven/OrdersToBeGiven"
 
 export default function Account() {
-    const [activeTab, setActiveTab] = useState<"orders" | "ordersToBeGiven">()
+    const [activeTab, setActiveTab] = useState<"orders" | "ordersToBeGiven">("orders")
 
     return (
         <div className="Account">
