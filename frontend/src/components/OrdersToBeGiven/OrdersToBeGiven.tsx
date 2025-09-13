@@ -1,4 +1,4 @@
-import "/OrdersToBeGiven.css"
+import "./OrdersToBeGiven.css"
 
 export default function OrdersToBeGiven() {
     return(
