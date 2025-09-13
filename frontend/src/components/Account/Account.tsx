@@ -1,13 +1,22 @@
 import "./Account.css"
+import {useState} from "react"
+import OrdersList from "../OrdersList/OrdersList"
+import OrdersToBeGiven from "../OrdersToBeGiven/OrdersToBeGiven"
 
 export default function Account() {
+    const [activeTab, setActiveTab] = useState<"orders" | "ordersToBeGiven">()
 
     return (
         <div className="Account">
             <h1>Hi, {localStorage.getItem("user")}</h1>
-            <div className="main-buttons">
-                <a>Заказы к выдачи</a>
-                <a>Выдать заказ</a>
+
+            <div className="tabs">
+                <a onClick={() => setActiveTab("orders")} >Заказы к выдачи</a>
+                <a onClick={() => setActiveTab("ordersToBeGiven")} >Выдать заказ</a>
+            </div>
+
+            <div className="current_tab">
+                {activeTab === "orders" ? <OrdersList /> : <OrdersToBeGiven />}
             </div>
         </div>
     )
