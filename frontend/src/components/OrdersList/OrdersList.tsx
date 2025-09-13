@@ -1,9 +1,39 @@
-import "/OrdersList.css"
+import "./OrdersList.css"
+import {useState, useEffect} from "react"
 
 export default function OrdersList() {
+    const [orders, setOrders] = useState<any[]>([])
+    const [loading, setLoading] = useState<string>("")
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading("Loading...")
+            try {
+                const response = await fetch("http://127.0.0.1:5000/api/orders") // create backend later 
+                const data = await response.json() 
+                setOrders(data) // whats wrong?
+            } catch (err) {
+                console.error("Failed to load orders from database")
+                setLoading("")
+            } finally {
+                setLoading("")
+            }
+        }
+        fetchData()
+    }, [])
+
     return(
         <div className="OrdersList">
             Заказы к выдаче
+            {loading}
+            {orders.map(order => (
+                <div className="order-card" key={order.id}>
+                    <h3 className="order-id">Номер заказа: {order.id}</h3>
+                    <p className="order-fio">ФИО клиента: {order.fio}</p>
+                    <p className="order-status">Статус: {order.status}</p>
+                    <p className="where-order-is">Месте хранения: {order.where}</p>
+                </div>
+            ))}
         </div>
     )
 }
