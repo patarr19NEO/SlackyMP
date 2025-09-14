@@ -24,7 +24,7 @@ export default function OrdersList() {
 
     return(
         <div className="OrdersList">
-            Заказы к выдаче
+            <h1>Заказы к выдаче</h1>
             {loading}
             {orders.map(order => (
                 <div className="order-card" key={order.id}>
