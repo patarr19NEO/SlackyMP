@@ -4,7 +4,17 @@ import OrdersList from "../OrdersList/OrdersList"
 import OrdersToBeGiven from "../OrdersToBeGiven/OrdersToBeGiven"
 
 export default function Account() {
-    const [activeTab, setActiveTab] = useState<"orders" | "ordersToBeGiven">("orders")
+    const [activeTab, setActiveTab] = useState<"orders" | "ordersToBeGiven" | "none">("none")
+
+    const currentTab = () => {
+        if (activeTab === "orders") {
+            return <OrdersList />
+        } else if (activeTab === "ordersToBeGiven") {
+            return <OrdersToBeGiven />
+        } else {
+            return null
+        }
+    }
 
     return (
         <div className="Account">
@@ -16,7 +26,7 @@ export default function Account() {
             </div>
 
             <div className="current_tab">
-                {activeTab === "orders" ? <OrdersList /> : <OrdersToBeGiven />}
+                {currentTab()}
             </div>
         </div>
     )
