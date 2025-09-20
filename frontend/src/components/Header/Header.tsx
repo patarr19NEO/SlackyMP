@@ -1,5 +1,8 @@
 import "./Header.css"
 
+const date = new Date();
+console.log(`${date.getHours()}:${date.getMinutes()}`)
+
 interface HeaderProps {
     onLogout: () => void;
     isLoggedIn: boolean;
@@ -7,9 +10,19 @@ interface HeaderProps {
 
 export default function Header({ onLogout, isLoggedIn }: HeaderProps) {
     const logout = () => {
-        localStorage.removeItem("user")
-        localStorage.removeItem("isLoggedIn")
-        onLogout(); // Вызываем функцию из App.tsx
+        if (date.getHours() < 21) {
+            if (!confirm("Рабочий день еще не закончился. Вы уверены, что хотите выйти?")) {
+                return
+            } else {
+                localStorage.removeItem("user")
+                localStorage.removeItem("isLoggedIn")
+                onLogout();
+            }
+        } else {
+            localStorage.removeItem("user")
+            localStorage.removeItem("isLoggedIn")
+            onLogout();
+        }
     }
 
     return (
