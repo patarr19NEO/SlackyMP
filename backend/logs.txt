@@ -3,3 +3,27 @@
 yura@mail.ru
 qwerty1234
 [MESSAGE] 2025-09-12 23:54:04.680802: server successfully got data in DataBase: yura@mail.ru and qwerty1234 with code 200
+[INFO] 2025-09-16 20:35:24.951265: got data:
+yura@mail.ru
+qwerty
+[ERROR] 2025-09-16 20:35:24.951501: server not found data in DataBase: yura@mail.ru and qwerty with code 404
+[INFO] 2025-09-16 20:35:32.755834: got data:
+yura@mail.ru
+qwerty1234
+[MESSAGE] 2025-09-16 20:35:32.756038: server successfully got data in DataBase: yura@mail.ru and qwerty1234 with code 200
+[INFO] 2025-09-16 21:00:58.497164: got data:
+yura@mail.ru
+qwerty1234
+[MESSAGE] 2025-09-16 21:00:58.497417: server successfully got data in DataBase: yura@mail.ru and qwerty1234 with code 200
+[INFO] 2025-09-20 14:58:52.249590: got data:
+yura@mail.ru
+qwerty1234
+[MESSAGE] 2025-09-20 14:58:52.250405: server successfully got data in DataBase: yura@mail.ru and qwerty1234 with code 200
+[INFO] 2025-09-20 15:11:27.841393: got data:
+yura@mail.ru
+qwerty1234
+[MESSAGE] 2025-09-20 15:11:27.841886: server successfully got data in DataBase: yura@mail.ru and qwerty1234 with code 200
+[INFO] 2025-09-28 22:27:34.589070: got data:
+yura@mail.ru
+qwerty1234
+[MESSAGE] 2025-09-28 22:27:34.593803: server successfully got data in DataBase: yura@mail.ru and qwerty1234 with code 200
