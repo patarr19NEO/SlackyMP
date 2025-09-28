@@ -14,19 +14,27 @@ USER_ACCOUNT = {
 ORDERS = [
     {
         "id": 1,
-        "fio": "Иван Петров",
+        "fio": "Юра Патаридзе",
         "status": "waiting",
-        "products": [{"name": "Футболка", "quantity": 2}],
+        "products": [{"name": "Iphone 17 Pro", "quantity": 2}],
         "barcode": "1234567890",
         "where": "A-15"
     },
     {
         "id": 2, 
-        "fio": "Мария Сидорова",
+        "fio": "Ольга Патаридзе",
         "status": "waiting",
         "products": [{"name": "Книга", "quantity": 1}],
         "barcode": "0987654321",
         "where": "Б-07"
+    },
+    {
+        "id": 2,
+        "fio": "Павел Патаридзе",
+        "status": "waiting",
+        "products": [{"name": "Трусы", "quantity": 2}],
+        "barcode": "1247932147",
+        "where": "Б-01"
     }
 ]
 
