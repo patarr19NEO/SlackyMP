@@ -29,7 +29,7 @@ ORDERS = [
         "where": "Б-07"
     },
     {
-        "id": 2,
+        "id": 3,
         "fio": "Павел Патаридзе",
         "status": "waiting",
         "products": [{"name": "Трусы", "quantity": 2}],
