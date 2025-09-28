@@ -22,10 +22,26 @@ ORDERS = [
     },
     {
         "id": 2, 
-        "fio": "Мария Сидорова",
+        "fio": "Юрий патаридзе",
         "status": "waiting",
         "products": [{"name": "Книга", "quantity": 1}],
         "barcode": "0987654321",
+        "where": "Б-07"
+    },
+    {
+        "id": 3, 
+        "fio": "Олег Петров",
+        "status": "waiting",
+        "products": [{"name": "Телеофон", "quantity": 1}],
+        "barcode": "2154987350",
+        "where": "Б-07"
+    },
+    {
+        "id": 4, 
+        "fio": "Алекс Стетхем",
+        "status": "waiting",
+        "products": [{"name": "Ручки стирайки", "quantity": 1}],
+        "barcode": "1478539147",
         "where": "Б-07"
     }
 ]
@@ -116,6 +132,20 @@ def issue_order(order_id):
         
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500
+
+@app.route('/api/orders/search', methods=['GET'])
+def search_orders():
+    query = request.args.get('q', '').lower()
+    
+    if not query:
+        return jsonify([])
+    
+    found_orders = [
+        order for order in ORDERS 
+        if query in str(order['id']).lower() or query in order['fio'].lower()
+    ]
+    
+    return jsonify(found_orders)
 
 if __name__ == "__main__":
     app.run(debug=True)
