@@ -11,7 +11,10 @@ export default function OrdersList() {
             try {
                 const response = await fetch("http://127.0.0.1:5000/api/orders") // create backend later 
                 const data = await response.json() 
-                setOrders(data) // whats wrong?
+
+                var waitingOrders = data.filter((order: any) => order.status === "waiting")
+
+                setOrders(waitingOrders)
             } catch (err) {
                 console.error("Failed to load orders from database")
                 setLoading("")
@@ -32,6 +35,7 @@ export default function OrdersList() {
                     <p className="order-fio">ФИО клиента: {order.fio}</p>
                     <p className="order-status">Статус: {order.status}</p>
                     <p className="where-order-is">Месте хранения: {order.where}</p>
+                    {/*<p className="whats_it">Что это: {order.products}</p>*/}
                 </div>
             ))}
         </div>
