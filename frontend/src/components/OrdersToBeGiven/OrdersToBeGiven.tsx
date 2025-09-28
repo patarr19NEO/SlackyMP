@@ -6,6 +6,7 @@ export default function OrdersToBeGiven() {
     const handleToBeGivenOrder = async () => {
         if (!orderId) {
             alert("Введите номер заказа!")
+            return
         }
 
         try {
@@ -16,13 +17,13 @@ export default function OrdersToBeGiven() {
                 },
             })
 
-            const data = await response.json
+            const data = await response.json()
 
             if (response.ok) {
-                alert(`Заказ выдан`)
+                alert(`${data.message}`)
                 setOrderId("")
             } else {
-                alert("Не найден id товара")
+                alert("Ошибка выдачи товара")
             }
         } catch (err) {
             console.error(err)
