@@ -8,6 +8,7 @@
     flex-direction: column;
     width: 200px;
     text-align: center;
+    margin-top: 50px;
 }
 
 .tabs a {
@@ -23,6 +24,8 @@
     width: 300px;
     color: black;
     background-color: white;
+    display: flex;
+    justify-content: center;
 }
 
 .workspace {
