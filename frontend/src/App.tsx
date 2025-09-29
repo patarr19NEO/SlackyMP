@@ -27,8 +27,8 @@ function App() {
 
   return (
     <>
-        {isLoggedIn ? null : (<Header onLogout={handleLogOut} isLoggedIn={isLoggedIn}/>)}
-        {isLoggedIn ? (<Account/>) : (<EnterForm onLoginSuccess={handleLogIn}/>)}
+        {isLoggedIn ? null : (<Header/>)}
+        {isLoggedIn ? (<Account onLogout={handleLogOut} isLoggedIn={isLoggedIn}/>) : (<EnterForm onLoginSuccess={handleLogIn}/>)}
     </>
   )
 }

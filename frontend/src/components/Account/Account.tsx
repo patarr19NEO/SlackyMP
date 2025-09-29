@@ -3,7 +3,14 @@ import {useState} from "react"
 import OrdersList from "../OrdersList/OrdersList"
 import OrdersToBeGiven from "../OrdersToBeGiven/OrdersToBeGiven"
 
-export default function Account() {
+interface HeaderProps {
+    onLogout: () => void;
+    isLoggedIn: boolean;
+}
+
+export default function Account({isLoggedIn, onLogout }: HeaderProps) {
+    //console.log(`${date.getHours()}:${date.getMinutes()}`)
+
     const [activeTab, setActiveTab] = useState<"orders" | "ordersToBeGiven" | "none">("none")
 
     const currentTab = () => {
@@ -13,6 +20,23 @@ export default function Account() {
             return <OrdersToBeGiven />
         } else {
             return null
+        }
+    }
+
+    const logout = () => {
+        const date = new Date();
+        if (date.getHours() < 21) {
+            if (!confirm("Рабочий день еще не закончился. Вы уверены, что хотите выйти?")) {
+                return
+            } else {
+                localStorage.removeItem("user")
+                localStorage.removeItem("isLoggedIn")
+                onLogout();
+            }
+        } else {
+            localStorage.removeItem("user")
+            localStorage.removeItem("isLoggedIn")
+            onLogout()
         }
     }
 
@@ -32,6 +56,7 @@ export default function Account() {
                     {currentTab()}
                 </div>
             </div>
+            <button onClick={logout}>LogOut</button>
         </div>
     )
 }
