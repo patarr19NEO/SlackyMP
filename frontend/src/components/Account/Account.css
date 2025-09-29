@@ -5,6 +5,9 @@
 .tabs {
     display: flex;
     gap: 20px;
+    flex-direction: column;
+    width: 200px;
+    text-align: center;
 }
 
 .tabs a {
