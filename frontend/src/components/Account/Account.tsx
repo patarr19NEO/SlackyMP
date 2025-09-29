@@ -18,7 +18,7 @@ export default function Account() {
 
     return (
         <div className="Account">
-            <h1>Hi, {localStorage.getItem("user")}</h1>
+            {/*<h1>Hi, {localStorage.getItem("user")}</h1>*/}
 
             <div className="workspace">
                 <div className="left_pannel">
