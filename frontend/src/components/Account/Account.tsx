@@ -20,13 +20,17 @@ export default function Account() {
         <div className="Account">
             <h1>Hi, {localStorage.getItem("user")}</h1>
 
-            <div className="tabs">
-                <a onClick={() => setActiveTab("orders")} >Заказы к выдачи</a>
-                <a onClick={() => setActiveTab("ordersToBeGiven")} >Выдать заказ</a>
-            </div>
+            <div className="workspace">
+                <div className="left_pannel">
+                    <div className="tabs">
+                        <a onClick={() => setActiveTab("orders")} >Заказы к выдачи</a>
+                        <a onClick={() => setActiveTab("ordersToBeGiven")} >Выдать заказ</a>
+                    </div>
+                </div>
 
-            <div className="current_tab">
-                {currentTab()}
+                <div className="current_tab">
+                    {currentTab()}
+                </div>
             </div>
         </div>
     )
