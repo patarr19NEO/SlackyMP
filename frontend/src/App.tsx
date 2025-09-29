@@ -20,7 +20,7 @@ function App() {
   return (
     <>
         <Header onLogout={handleLogOut} isLoggedIn={isLoggedIn} />
-            {isLoggedIn ? (<Account/>) : (<EnterForm onLoginSuccess={handleLogIn}/>)}
+        {isLoggedIn ? (<Account/>) : (<EnterForm onLoginSuccess={handleLogIn}/>)}
     </>
   )
 }
