@@ -8,7 +8,7 @@
     flex-direction: column;
     width: 200px;
     text-align: center;
-    margin-top: 50px;
+    margin-top: -500px;
 }
 
 .tabs a {
@@ -41,4 +41,18 @@
 .workspace {
     display: flex;
     flex-direction: row;
+}
+
+.profile {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-top: 20px;
+}
+
+.profile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }

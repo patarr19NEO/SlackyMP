@@ -46,6 +46,9 @@ export default function Account({isLoggedIn, onLogout }: HeaderProps) {
 
             <div className="workspace">
                 <div className="left_pannel">
+                    <div className="profile">
+                        <img src="../src/assets/cat-avatar.png" alt="logo-avatar"/>
+                    </div>
                     <div className="tabs">
                         <a onClick={() => setActiveTab("orders")} >Заказы к выдачи</a>
                         <a onClick={() => setActiveTab("ordersToBeGiven")} >Выдать заказ</a>
