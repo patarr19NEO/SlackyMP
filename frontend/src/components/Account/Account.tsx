@@ -50,13 +50,15 @@ export default function Account({isLoggedIn, onLogout }: HeaderProps) {
                         <a onClick={() => setActiveTab("orders")} >Заказы к выдачи</a>
                         <a onClick={() => setActiveTab("ordersToBeGiven")} >Выдать заказ</a>
                     </div>
+                    <div className="logout_button">
+                        <button onClick={logout}>LogOut</button>
+                    </div>
                 </div>
 
                 <div className="current_tab">
                     {currentTab()}
                 </div>
             </div>
-            <button onClick={logout}>LogOut</button>
         </div>
     )
 }

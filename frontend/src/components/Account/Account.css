@@ -25,7 +25,17 @@
     color: black;
     background-color: white;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logout_button button {
+    margin: 20px;
+    padding: 15px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
 }
 
 .workspace {
