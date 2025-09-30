@@ -25,16 +25,24 @@ export default function OrdersList() {
 
     return(
         <div className="OrdersList">
-            <h1>Заказы к выдаче</h1>
+            <h1 className="header-h1">Заказы к выдаче</h1>
             {loading}
-            {orders.map(order => (
-                <div className="order-card" key={order.id}>
-                    <h3 className="order-id">Номер заказа: {order.id}</h3>
-                    <p className="order-fio">ФИО клиента: {order.fio}</p>
-                    <p className="order-status">Статус: {order.status}</p>
-                    <p className="where-order-is">Месте хранения: {order.where}</p>
-                </div>
-            ))}
+            <div className="table-items">
+                <h2>№</h2>
+                <h2>ФИО</h2>
+                <h2>Статус</h2>
+                <h2>Место</h2>
+            </div>
+            {/*{
+                orders.map(order => (
+                    <div className="order-card" key={order.id}>
+                        <h3 className="order-id">Номер заказа: {order.id}</h3>
+                        <p className="order-fio">ФИО клиента: {order.fio}</p>
+                        <p className="order-status">Статус: {order.status}</p>
+                        <p className="where-order-is">Месте хранения: {order.where}</p>
+                    </div>
+                ))
+            }*/}
         </div>
     )
 }
