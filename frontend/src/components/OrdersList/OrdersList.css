@@ -11,6 +11,18 @@
     min-width: 120px;
 }
 
+.order-card {
+    background-color: white;
+    width: calc(100% - 20px);
+    color: black;
+    display: flex;
+    flex-direction: row;
+    gap: 20vw;
+    margin-top: 30px;
+}
+
 .table {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
