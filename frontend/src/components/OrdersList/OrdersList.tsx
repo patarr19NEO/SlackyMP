@@ -27,11 +27,13 @@ export default function OrdersList() {
         <div className="OrdersList">
             <h1 className="header-h1">Заказы к выдаче</h1>
             {loading}
-            <div className="table-items">
-                <h2>№</h2>
-                <h2>ФИО</h2>
-                <h2>Статус</h2>
-                <h2>Место</h2>
+            <div className="table">
+                <div className="table-items">
+                    <h2>№</h2>
+                    <h2>ФИО</h2>
+                    <h2>Статус</h2>
+                    <h2>Место</h2>
+                </div>
             </div>
             {/*{
                 orders.map(order => (
