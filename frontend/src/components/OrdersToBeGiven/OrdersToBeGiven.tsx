@@ -31,6 +31,7 @@ export default function OrdersToBeGiven() {
 
     return(
         <div className="OrdersToBeGiven">
+            <h1>Выдать заказ</h1>
             <input type="text" value={orderId} onChange={(e) => setOrderId(e.target.value)} />
             <button onClick={handleToBeGivenOrder}>Выдать</button>
         </div>
