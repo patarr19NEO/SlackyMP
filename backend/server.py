@@ -6,11 +6,6 @@ from datetime import datetime
 app = Flask(__name__)
 CORS(app)
 
-USER_ACCOUNT = {
-    "email": "yura@mail.ru",
-    "password": "qwerty1234"
-}
-
 def get_orders_from_json():
     """Read orders from orders.json file"""
     try:
@@ -20,10 +15,30 @@ def get_orders_from_json():
         print(f"Error reading orders.json: {e}")
         return []
 
+def authenticate_employee(email, password):
+    """Authenticate employee from employees.json"""
+    try:
+        employees_data = readDB("employees.json")
+        employees = employees_data["epinfo"]["employees"]
+        
+        # Search for employee with matching email and password
+        for employee in employees:
+            if employee["email"] == email and employee["password"] == password:
+                return employee  # Return the found employee
+        
+        return None  # No matching employee found
+    except Exception as e:
+        print(f"Error reading employees.json: {e}")
+        return None
+
 logs_file = "logs.txt"
 
 def readDB(file):
-    with open(file, "r") as f:
+    # Get the directory where this script is located
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(script_dir, file)
+    print(f"Reading file from: {file_path}")
+    with open(file_path, "r", encoding="utf-8") as f:
         return json.load(f)
 
 @app.route("/api/users", methods=["POST"])
@@ -38,13 +53,17 @@ def users():
         with open(logs_file, "a") as file:
             file.write(f"\n[INFO] {datetime.now()}: got data:\n{username}\n{password}")
 
-        if username == readDB("employees.json")["epinfo"]["employees"]["email"] and password == readDB("employees.json")["epinfo"]["employees"]["password"]:
+        # Use the new authentication function
+        employee = authenticate_employee(username, password)
+        
+        if employee:
             with open(logs_file, "a") as file:
                 file.write(f"\n[MESSAGE] {datetime.now()}: server successfully got data in DataBase: {username} and {password} with code 200")
             return jsonify({
                 "status": "success",
                 "message": f"server successfully got data in DataBase: {username} and {password}",
-                "user": username
+                "user": username,
+                "employee_code": employee.get("code", "")
             }), 200
         else:
             with open(logs_file, "a") as file:
@@ -68,14 +87,8 @@ def users():
 def get_orders():
     try:
         orders = get_orders_from_json()
-        status_filter = request.args.get('status')
-        
-        if status_filter:
-            filtered_orders = [order for order in orders if order['status'] == status_filter]
-            return jsonify(filtered_orders)
-        else:
-            return jsonify(orders)
-            
+        return jsonify(orders)
+
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
