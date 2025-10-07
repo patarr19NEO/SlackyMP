@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.OrdersList {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box; /* Важно: padding не увеличивает общую ширину */
+}
+
+/* Общий контейнер для всей таблицы */
+.alltables {
+    width: 100%;
+    overflow-x: auto; /* Добавляет горизонтальную прокрутку на маленьких экранах */
+}
+
+/* Шапка таблицы и карточки используют одинаковую сетку */
+.table-items, .order-card {
+    display: grid;
+    /* Колонки: №, ФИО, Статус, Место */
+    grid-template-columns: minmax(80px, 1fr) minmax(200px, 2fr) minmax(150px, 1.5fr) minmax(100px, 1fr);
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+    padding: 15px 20px;
+    box-sizing: border-box; /* Важно: padding не увеличивает общую ширину */
+}
+
+.table-items {
+    font-weight: bold;
+}
+
+.order-card {
+    background-color: white;
+    color: black;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}

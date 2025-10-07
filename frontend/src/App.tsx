@@ -1,11 +1,19 @@
 import './App.css'
 import Header from "./components/Header/Header.tsx"
-import EnterForm from "./components/EnterForm/EnterForm.tsx";
+import EnterForm from "./components/EnterForm/EnterForm.tsx"
 import Account from "./components/Account/Account.tsx"
-import {useState} from "react";
+import {useState, useEffect} from "react"
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true)
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true)
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const loggedStatus = localStorage.getItem("isLoggedIn")
+            console.log(localStorage.getItem("user"), localStorage.getItem("isLoggedIn"))
+            setIsLoggedIn(loggedStatus === "true")
+        }
+    }, []);
 
   const handleLogOut = () => {
       setIsLoggedIn(false)
@@ -19,8 +27,8 @@ function App() {
 
   return (
     <>
-        <Header onLogout={handleLogOut} isLoggedIn={isLoggedIn} />
-        {isLoggedIn ? (<Account />) : (<EnterForm onLoginSuccess={handleLogIn} />)}
+        {isLoggedIn ? null : (<Header/>)}
+        {isLoggedIn ? (<Account onLogout={handleLogOut} isLoggedIn={isLoggedIn}/>) : (<EnterForm onLoginSuccess={handleLogIn}/>)}
     </>
   )
 }

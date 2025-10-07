@@ -10,8 +10,9 @@ export default function OrdersList() {
             setLoading("Loading...")
             try {
                 const response = await fetch("http://127.0.0.1:5000/api/orders") // create backend later 
-                const data = await response.json() 
-                setOrders(data) // whats wrong?
+                const data = await response.json()
+                var waiting = data.filter(order => order.status === "waiting")
+                setOrders(waiting)
             } catch (err) {
                 console.error("Failed to load orders from database")
                 setLoading("")
@@ -24,16 +25,28 @@ export default function OrdersList() {
 
     return(
         <div className="OrdersList">
-            <h1>Заказы к выдаче</h1>
+            <h1 className="header-h1">Заказы к выдаче</h1>
             {loading}
-            {orders.map(order => (
-                <div className="order-card" key={order.id}>
-                    <h3 className="order-id">Номер заказа: {order.id}</h3>
-                    <p className="order-fio">ФИО клиента: {order.fio}</p>
-                    <p className="order-status">Статус: {order.status}</p>
-                    <p className="where-order-is">Месте хранения: {order.where}</p>
+            <div className="alltables">
+                <div className="table-items">
+                    <h2>№</h2>
+                    <h2>ФИО</h2>
+                    <h2>Статус</h2>
+                    <h2>Место</h2>
                 </div>
-            ))}
+                <div className="table">
+                    {
+                        orders.map(order => (
+                            <div className="order-card" key={order.id}>
+                                <h3 className="order-id">{order.id}</h3>
+                                <p className="order-fio">{order.fio}</p>
+                                <p className="order-status">{order.status}</p>
+                                <p className="where-order-is">{order.where}</p>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
         </div>
     )
 }

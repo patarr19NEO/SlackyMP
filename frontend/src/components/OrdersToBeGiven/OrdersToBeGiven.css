@@ -1,0 +1,21 @@
+.OrdersToBeGiven {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрирует дочерние элементы (input, button) */
+    width: 100%; /* Убедитесь, что блок занимает всю ширину родителя */
+    text-align: center; /* Центрирует текст внутри h1 и других элементов */
+}
+
+.OrdersToBeGiven button {
+    margin-top: 10px;
+    padding: 5px;
+}
+
+.OrdersToBeGiven input {
+    padding: 7px;
+    text-align: center;
+}
+
+.OrdersToBeGiven input:focus {
+    outline: none;
+}
