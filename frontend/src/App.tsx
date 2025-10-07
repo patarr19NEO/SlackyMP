@@ -5,7 +5,7 @@ import Account from "./components/Account/Account.tsx"
 import {useState, useEffect} from "react"
 
 function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true)
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -21,14 +21,10 @@ function App() {
       localStorage.removeItem("isLoggedIn")
   }
 
-  const handleLogIn = () => {
-      setIsLoggedIn(true)
-  }
-
   return (
     <>
         {isLoggedIn ? null : (<Header/>)}
-        {isLoggedIn ? (<Account onLogout={handleLogOut} isLoggedIn={isLoggedIn}/>) : (<EnterForm onLoginSuccess={handleLogIn}/>)}
+        {isLoggedIn ? (<Account onLogout={handleLogOut} isLoggedIn={isLoggedIn}/>) : (<EnterForm onLoginSuccess={() => setIsLoggedIn(true)} />)}
     </>
   )
 }

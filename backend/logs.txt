@@ -95,3 +95,31 @@ qwerty1234
 yura@mail.ru
 qwerty1234
 [MESSAGE] 2025-10-06 21:15:52.688368: server successfully got data in DataBase: yura@mail.ru and qwerty1234 with code 200
+[INFO] 2025-10-06 21:23:10.213025: got data:
+yura@mail.ru
+qwerty1234
+[MESSAGE] 2025-10-06 21:23:10.213225: server successfully got data in DataBase: yura@mail.ru and qwerty1234 with code 200
+[INFO] 2025-10-06 21:25:27.539694: got data:
+yura@mail.ru
+qwerty1234
+[MESSAGE] 2025-10-06 21:25:27.539889: server successfully got data in DataBase: yura@mail.ru and qwerty1234 with code 200
+[INFO] 2025-10-06 21:41:41.653544: got data:
+yura@mail.ru
+qwerty1234
+[MESSAGE] 2025-10-06 21:41:41.653743: server successfully got data in DataBase: yura@mail.ru and qwerty1234 with code 200
+[INFO] 2025-10-07 21:38:39.628454: got data:
+yura@mail.ru
+qwerty1234
+[ERROR] 2025-10-07 21:38:39.629063: server failed to get data with code 500
+[INFO] 2025-10-07 21:44:44.706121: got data:
+yura@mail.ru
+qwerty1234
+[MESSAGE] 2025-10-07 21:44:44.706919: server successfully got data in DataBase: yura@mail.ru and qwerty1234 with code 200
+[INFO] 2025-10-07 22:22:23.836439: got data:
+emp2@mail.ru
+1234qwerty
+[MESSAGE] 2025-10-07 22:22:23.837247: server successfully got data in DataBase: emp2@mail.ru and 1234qwerty with code 200
+[INFO] 2025-10-07 22:38:26.147989: got data:
+emp2@mail.ru
+1234qwerty
+[MESSAGE] 2025-10-07 22:38:26.148618: server successfully got data in DataBase: emp2@mail.ru and 1234qwerty with code 200

@@ -19,7 +19,7 @@ body {
 .table-items, .order-card {
     display: grid;
     /* Колонки: №, ФИО, Статус, Место */
-    grid-template-columns: minmax(80px, 1fr) minmax(200px, 2fr) minmax(150px, 1.5fr) minmax(100px, 1fr);
+    grid-template-columns: minmax(80px, 1fr) minmax(200px, 2fr) minmax(200px, 2fr) minmax(150px, 1.5fr) minmax(100px, 1fr);
     gap: 20px;
     align-items: center;
     width: 100%;
