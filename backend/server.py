@@ -11,34 +11,20 @@ USER_ACCOUNT = {
     "password": "qwerty1234"
 }
 
-ORDERS = [
-    {
-        "id": 1,
-        "fio": "Юра Патаридзе",
-        "status": "waiting",
-        "products": [{"name": "Iphone 17 Pro", "quantity": 2}],
-        "barcode": "1234567890",
-        "where": "A-15"
-    },
-    {
-        "id": 2, 
-        "fio": "Ольга Патаридзе",
-        "status": "waiting",
-        "products": [{"name": "Книга", "quantity": 1}],
-        "barcode": "0987654321",
-        "where": "Б-07"
-    },
-    {
-        "id": 3,
-        "fio": "Павел Патаридзе",
-        "status": "waiting",
-        "products": [{"name": "Трусы", "quantity": 2}],
-        "barcode": "1247932147",
-        "where": "Б-01"
-    }
-]
+def get_orders_from_json():
+    """Read orders from orders.json file"""
+    try:
+        orders_data = readDB("orders.json")
+        return orders_data["ordinfo"]["orders"]
+    except Exception as e:
+        print(f"Error reading orders.json: {e}")
+        return []
 
 logs_file = "logs.txt"
+
+def readDB(file):
+    with open(file, "r") as f:
+        return json.load(f)
 
 @app.route("/api/users", methods=["POST"])
 def users():
@@ -52,7 +38,7 @@ def users():
         with open(logs_file, "a") as file:
             file.write(f"\n[INFO] {datetime.now()}: got data:\n{username}\n{password}")
 
-        if username == USER_ACCOUNT["email"] and password == USER_ACCOUNT["password"]:
+        if username == readDB("employees.json")["epinfo"]["employees"]["email"] and password == readDB("employees.json")["epinfo"]["employees"]["password"]:
             with open(logs_file, "a") as file:
                 file.write(f"\n[MESSAGE] {datetime.now()}: server successfully got data in DataBase: {username} and {password} with code 200")
             return jsonify({
@@ -81,13 +67,14 @@ def users():
 @app.route('/api/orders', methods=['GET'])
 def get_orders():
     try:
+        orders = get_orders_from_json()
         status_filter = request.args.get('status')
         
         if status_filter:
-            filtered_orders = [order for order in ORDERS if order['status'] == status_filter]
+            filtered_orders = [order for order in orders if order['status'] == status_filter]
             return jsonify(filtered_orders)
         else:
-            return jsonify(ORDERS)
+            return jsonify(orders)
             
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -95,17 +82,30 @@ def get_orders():
 # Найти заказ по ID
 @app.route('/api/orders/<int:order_id>', methods=['GET'])
 def get_order(order_id):
-    order = next((o for o in ORDERS if o['id'] == order_id), None)
+    orders = get_orders_from_json()
+    order = next((o for o in orders if o['id'] == order_id), None)
     if order:
         return jsonify(order)
     else:
         return jsonify({"error": "Заказ не найден"}), 404
 
+def write_orders_to_json(orders):
+    """Записывает заказы обратно в orders.json"""
+    try:
+        orders_data = {"ordinfo": {"orders": orders}}
+        with open("orders.json", "w", encoding="utf-8") as f:
+            json.dump(orders_data, f, ensure_ascii=False, indent=2)
+        return True
+    except Exception as e:
+        print(f"Error writing to orders.json: {e}")
+        return False
+
 # Выдать заказ
 @app.route('/api/orders/<int:order_id>/issue', methods=['POST'])
 def issue_order(order_id):
     try:
-        order = next((o for o in ORDERS if o['id'] == order_id), None)
+        orders = get_orders_from_json()
+        order = next((o for o in orders if o['id'] == order_id), None)
         
         if not order:
             return jsonify({"success": False, "message": "Заказ не найден"}), 404
@@ -115,6 +115,10 @@ def issue_order(order_id):
         
         # Меняем статус заказа
         order['status'] = 'completed'
+        
+        # Сохраняем изменения обратно в JSON файл
+        if not write_orders_to_json(orders):
+            return jsonify({"success": False, "message": "Ошибка сохранения"}), 500
         
         return jsonify({
             "success": True,
@@ -126,4 +130,5 @@ def issue_order(order_id):
         return jsonify({"success": False, "error": str(e)}), 500
 
 if __name__ == "__main__":
+    print(readDB("employees.json"))
     app.run(debug=True)
