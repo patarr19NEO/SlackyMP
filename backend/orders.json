@@ -1,0 +1,56 @@
+{ "ordinfo": {
+  "orders": [
+    {
+      "id": 1,
+      "fio": "Юра Патаридзе",
+      "status": "waiting",
+      "products": [{"name": "Iphone 17 Pro", "quantity": 1}],
+      "where": "A-2"
+    },
+    {
+      "id": 1,
+      "fio": "Ольга Патаридзе",
+      "status": "waiting",
+      "products": [{"name": "Веревки для вязания", "quantity": 4}],
+      "where": "A-1"
+    },{
+      "id": 1,
+      "fio": "Павел Патаридзе",
+      "status": "waiting",
+      "products": [{"name": "Телевизор", "quantity": 1}],
+      "where": "Б-3"
+    },{
+      "id": 1,
+      "fio": "Котен Котеныч",
+      "status": "waiting",
+      "products": [{"name": "Рыбка вкусная 1 кг", "quantity": 15}],
+      "where": "Б-1"
+    },{
+      "id": 1,
+      "fio": "Бабушка Ирина",
+      "status": "waiting",
+      "products": [{"name": "Нутелла для внучка", "quantity": 10}],
+      "where": "A-4"
+    },{
+      "id": 1,
+      "fio": "Дедушка Игорь",
+      "status": "waiting",
+      "products": [{"name": "Носки от Ольги Патаридзе", "quantity": 2}],
+      "where": "A-3"
+    },{
+      "id": 1,
+      "fio": "Тетя Аня",
+      "status": "waiting",
+      "products": [{"name": "Варенье", "quantity": 1}],
+      "where": "A-6"
+    },{
+      "id": 1,
+      "fio": "Брат Павла Патаридзе",
+      "status": "waiting",
+      "products": [{"name": "Гитара Электронная", "quantity": 1}],
+      "where": "A-5"
+    }
+  ]
+}
+
+}
