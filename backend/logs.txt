@@ -143,3 +143,39 @@ emp2@mail.ru
 yura@mail.ru
 qwerty1234
 [MESSAGE] 2025-10-08 19:19:47.197663: server successfully got data in DataBase: yura@mail.ru and qwerty1234 with code 200
+[INFO] 2025-10-08 20:56:14.316773: got data:
+emp2@mail.ru
+1234qwerty
+[MESSAGE] 2025-10-08 20:56:14.317515: server successfully got data in DataBase: emp2@mail.ru and 1234qwerty with code 200
+[INFO] 2025-10-08 21:08:58.210100: got data:
+yura@mail.ru
+qwerty1234
+[MESSAGE] 2025-10-08 21:08:58.210664: server successfully got data in DataBase: yura@mail.ru and qwerty1234 with code 200
+[INFO] 2025-10-08 21:30:26.514570: got data:
+emp2@mail.ru
+1234qwerty
+[ERROR] 2025-10-08 21:30:26.515271: server not found data in DataBase: emp2@mail.ru and 1234qwerty with code 404
+[INFO] 2025-10-08 21:30:51.575489: got data:
+emp2@mail.ru
+1234qwerty
+[ERROR] 2025-10-08 21:30:51.576131: server not found data in DataBase: emp2@mail.ru and 1234qwerty with code 404
+[INFO] 2025-10-08 21:31:01.393324: got data:
+yura@mail.ru
+qwerty1234
+[ERROR] 2025-10-08 21:31:01.394100: server not found data in DataBase: yura@mail.ru and qwerty1234 with code 404
+[INFO] 2025-10-08 21:40:41.243006: got data:
+yura@mail.ru
+qwerty1234
+[MESSAGE] 2025-10-08 21:40:41.243606: server successfully got data in DataBase: yura@mail.ru and qwerty1234 with code 200
+[INFO] 2025-10-08 22:37:47.068711: got data:
+emp2@mail.ru
+1234qwerty
+[MESSAGE] 2025-10-08 22:37:47.069405: server successfully got data in DataBase: emp2@mail.ru and 1234qwerty with code 200
+[INFO] 2025-10-08 22:48:41.244791: got data:
+yura@mail.ru
+qwerty1234
+[MESSAGE] 2025-10-08 22:48:41.245370: server successfully got data in DataBase: yura@mail.ru and qwerty1234 with code 200
+[INFO] 2025-10-08 22:51:22.758127: got data:
+emp2@mail.ru
+1234qwerty
+[MESSAGE] 2025-10-08 22:51:22.758713: server successfully got data in DataBase: emp2@mail.ru and 1234qwerty with code 200
