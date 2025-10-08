@@ -34,10 +34,18 @@ def authenticate_employee(email, password):
         employees_data = readDB("employees.json")
         employees = employees_data["epinfo"]["employees"]
         
-        # Search for employee with matching email and password
-        for employee in employees:
-            if employee["email"] == email and employee["password"] == password:
-                return employee  # Return the found employee
+        # Check if employee exists with the given email
+        if email in employees:
+            employee_data = employees[email]
+            # Check if password matches
+            if employee_data["password"] == password:
+                # Return employee data with email included
+                return {
+                    "email": email,
+                    "password": employee_data["password"],
+                    "code": employee_data["code"],
+                    "avatar_image": employee_data.get("avatar_image", "")
+                }
         
         return None  # No matching employee found
     except Exception as e:
@@ -109,7 +117,7 @@ def get_orders():
         # Verify that employee exists
         employees_data = readDB("employees.json")
         employees = employees_data["epinfo"]["employees"]
-        employee_exists = any(emp["email"] == employee_email for emp in employees)
+        employee_exists = employee_email in employees
         
         if not employee_exists:
             return jsonify({"error": "Employee not found"}), 404
@@ -212,19 +220,29 @@ def get_avatar():
         data = request.get_json()
 
         if not data or "employee_email" not in data:
-            return jsonify({"success": False, "message": "Couldn't get employee email"}), 500
+            return jsonify({"success": False, "message": "Couldn't get employee email"}), 400
 
         employee_email = data.get("employee_email")
 
-        with open("employees.json", "r") as f:
-            load_from_db_emp = json.load(f)
-
-        path_to_avatar = load_from_db_emp["epinfo"]["employees"][employee_email]["avatar_image"]
+        # Use consistent readDB function
+        employees_data = readDB("employees.json")
+        employees = employees_data["epinfo"]["employees"]
+        
+        # Check if employee exists
+        if employee_email not in employees:
+            return jsonify({
+                "success": False, 
+                "message": "Employee not found"
+            }), 404
+        
+        # Get avatar image path, provide default if not found
+        employee_data = employees[employee_email]
+        avatar_path = employee_data.get("avatar_image", "")
 
         return jsonify({
             "success": True,
             "message": "Successfully got avatar image path",
-            "avatar_img_path": str(path_to_avatar)
+            "avatar_img_path": str(avatar_path)
         }), 200
 
     except Exception as e:
