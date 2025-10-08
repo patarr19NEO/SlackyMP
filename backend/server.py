@@ -206,6 +206,50 @@ def issue_order(order_id):
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500
 
+@app.route("/api/account/avatars",  methods=['POST'])
+def get_avatar():
+    try:
+        data = request.get_json()
+
+        if not data or "employee_email" not in data:
+            return jsonify({"success": False, "message": "Couldn't get employee email"}), 500
+
+        employee_email = data.get("employee_email")
+
+        with open("employees.json", "r") as f:
+            load_from_db_emp = json.load(f)
+
+        path_to_avatar = load_from_db_emp["epinfo"]["employees"][employee_email]["avatar_image"]
+
+        return jsonify({
+            "success": True,
+            "message": "Successfully got avatar image path",
+            "avatar_img_path": str(path_to_avatar)
+        }), 200
+
+    except Exception as e:
+        return jsonify({
+            "success": False,
+            "message": f"Server error: {e}"
+        }), 500
+
 if __name__ == "__main__":
     print(readDB("employees.json"))
     app.run(debug=True)
+
+
+
+                    #JSON#
+"""
+{
+        "email": "yura@mail.ru",
+        "password": "qwerty1234",
+        "code": "EMP-1_21hr-twoTH25",
+        "avatar_image": "../src/assets/cat-avatar.png"
+      },
+      {
+        "email": "emp2@mail.ru",
+        "password": "1234qwerty",
+        "code": "EMP-2_21hr-twoTH25"
+      }
+"""
