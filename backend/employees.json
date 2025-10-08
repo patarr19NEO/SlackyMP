@@ -1,17 +1,15 @@
 {
   "epinfo": {
-    "employees": [
-      {
-        "email": "yura@mail.ru",
+    "employees": {
+      "yura@mail.ru": {
         "password": "qwerty1234",
         "code": "EMP-1_21hr-twoTH25",
         "avatar_image": "../src/assets/cat-avatar.png"
-      },
-      {
-        "email": "emp2@mail.ru",
+        },
+      "emp2@mail.ru": {
         "password": "1234qwerty",
         "code": "EMP-2_21hr-twoTH25"
       }
-    ]
+    }
   }
 }
