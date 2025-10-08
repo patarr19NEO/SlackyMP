@@ -8,7 +8,8 @@
         },
       "emp2@mail.ru": {
         "password": "1234qwerty",
-        "code": "EMP-2_21hr-twoTH25"
+        "code": "EMP-2_21hr-twoTH25",
+        "avatar_image": "../src/assets/dog-avatar.png"
       }
     }
   }
