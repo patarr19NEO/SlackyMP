@@ -123,3 +123,23 @@ emp2@mail.ru
 emp2@mail.ru
 1234qwerty
 [MESSAGE] 2025-10-07 22:38:26.148618: server successfully got data in DataBase: emp2@mail.ru and 1234qwerty with code 200
+[INFO] 2025-10-07 22:49:28.908480: got data:
+yura@mail.ru
+qwerty1234
+[MESSAGE] 2025-10-07 22:49:28.909384: server successfully got data in DataBase: yura@mail.ru and qwerty1234 with code 200
+[INFO] 2025-10-08 18:17:32.413557: got data:
+yura@mail.ru
+qwerty1234
+[MESSAGE] 2025-10-08 18:17:32.416991: server successfully got data in DataBase: yura@mail.ru and qwerty1234 with code 200
+[INFO] 2025-10-08 19:09:44.853480: got data:
+yura@mail.ru
+qwerty1234
+[MESSAGE] 2025-10-08 19:09:44.854035: server successfully got data in DataBase: yura@mail.ru and qwerty1234 with code 200
+[INFO] 2025-10-08 19:19:30.610410: got data:
+emp2@mail.ru
+1234qwerty
+[MESSAGE] 2025-10-08 19:19:30.611069: server successfully got data in DataBase: emp2@mail.ru and 1234qwerty with code 200
+[INFO] 2025-10-08 19:19:47.196425: got data:
+yura@mail.ru
+qwerty1234
+[MESSAGE] 2025-10-08 19:19:47.197663: server successfully got data in DataBase: yura@mail.ru and qwerty1234 with code 200

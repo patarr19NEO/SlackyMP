@@ -19,3 +19,11 @@
 .OrdersToBeGiven input:focus {
     outline: none;
 }
+
+.OrdersToBeGiven h2 {
+    color: red;
+}
+
+.OrdersToBeGiven button {
+    margin-top: -10px;
+}

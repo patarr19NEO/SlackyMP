@@ -10,20 +10,39 @@ export default function OrdersList() {
         const fetchData = async () => {
             setLoading("Loading...")
             try {
+                const empName = localStorage.getItem("user")
+                console.log("🔍 Сотрудники в LocalStorage:", empName)
                 console.log("🔥 Вызываем API...")
-                const response = await fetch("http://127.0.0.1:5000/api/orders") // create backend later 
+                const response = await fetch("http://127.0.0.1:5000/api/orders", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ employee_email: empName })
+                })
                 console.log("📡 Ответ API:", response.status)
                 
                 const data = await response.json()
                 console.log("📦 Какие заказы:", data)
                 
-                var waiting = data.filter(order => order.status === "waiting")
-                console.log("⏳ Фильтрованные по ожиданию:", waiting)
-                console.log("📊 Количество ожидающих заказов:", waiting.length)
-                if (waiting.length <= 0) {
+                if (response.ok && Array.isArray(data)) {
+                    // Filter only waiting orders
+                    var waiting = data.filter(order => order.status === "waiting")
+                    console.log("⏳ Фильтрованные по ожиданию:", waiting)
+                    console.log("📊 Количество ожидающих заказов:", waiting.length)
+                    
+                    if (waiting.length <= 0) {
+                        setIsNoOrders(true)
+                        setOrders([])
+                    } else {
+                        setIsNoOrders(false)
+                        setOrders(waiting)
+                    }
+                } else {
+                    console.error("❌ Ошибка API или неверные данные:", data)
                     setIsNoOrders(true)
+                    setOrders([])
                 }
-                setOrders(waiting)
             } catch (err) {
                 console.error("❌ Не получилось закрузить заказы с сервера:", err)
                 setLoading("")
