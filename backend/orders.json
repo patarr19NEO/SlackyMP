@@ -6,7 +6,7 @@
           {
             "id": 1,
             "fio": "Юра Патаридзе",
-            "status": "completed",
+            "status": "waiting",
             "name": "Iphone 17 Pro",
             "quantity": 1,
             "where": "A-2"
@@ -22,7 +22,7 @@
           {
             "id": 3,
             "fio": "Павел Патаридзе",
-            "status": "completed",
+            "status": "waiting",
             "name": "Телевизор",
             "quantity": 1,
             "where": "Б-3"
@@ -30,7 +30,7 @@
           {
             "id": 4,
             "fio": "Котен Котеныч",
-            "status": "completed",
+            "status": "waiting",
             "quantity": 15,
             "name": "Рыбка вкусная 1 кг",
             "where": "Б-1"
@@ -38,7 +38,7 @@
           {
             "id": 5,
             "fio": "Бабушка Ирина",
-            "status": "completed",
+            "status": "waiting",
             "name": "Нутелла для внучка",
             "quantity": 10,
             "where": "A-4"
@@ -46,7 +46,7 @@
           {
             "id": 6,
             "fio": "Дедушка Игорь",
-            "status": "completed",
+            "status": "waiting",
             "name": "Носки от Ольги Патаридзе",
             "quantity": 2,
             "where": "A-3"
@@ -54,7 +54,7 @@
           {
             "id": 7,
             "fio": "Тетя Аня",
-            "status": "completed",
+            "status": "waiting",
             "name": "Варенье",
             "quantity": 1,
             "where": "A-6"
@@ -62,7 +62,7 @@
           {
             "id": 8,
             "fio": "Брат Павла Патаридзе",
-            "status": "completed",
+            "status": "waiting",
             "name": "Гитара Электронная",
             "quantity": 1,
             "where": "A-5"
