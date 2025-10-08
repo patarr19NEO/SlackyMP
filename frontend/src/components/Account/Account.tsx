@@ -59,6 +59,10 @@ export default function Account({isLoggedIn, onLogout }: HeaderProps) {
                 const data = await response.json()
                 console.log("📡 Ответ API:", data)
                 let path_to_avatar = data.avatar_img_path
+
+                if (!path_to_avatar || path_to_avatar === "") {
+                    setAvatarImg("../src/assets/default-avatar.png")
+                }
                 
                 // Convert backend path to frontend path
                 if (path_to_avatar && path_to_avatar.startsWith('../src/assets/')) {
@@ -84,7 +88,7 @@ export default function Account({isLoggedIn, onLogout }: HeaderProps) {
                 <div className="left_pannel">
                     <div className="profile">
                         <img 
-                            src={avatarImg || "/default-avatar.png"} 
+                            src={avatarImg || "..src/assets/default-avatar.png"}
                             alt="logo-avatar" 
                             onError={(e) => {
                                 (e.target as HTMLImageElement).src = "/default-avatar.png"
