@@ -2,6 +2,7 @@ import "./Account.css"
 import {useEffect, useState} from "react"
 import OrdersList from "../OrdersList/OrdersList"
 import OrdersToBeGiven from "../OrdersToBeGiven/OrdersToBeGiven"
+import Completed_Orders from "../Completed_Orders/Completed_Orders"
 
 interface HeaderProps {
     onLogout: () => void;
@@ -9,16 +10,17 @@ interface HeaderProps {
 }
 
 export default function Account({isLoggedIn, onLogout }: HeaderProps) {
-    //console.log(`${date.getHours()}:${date.getMinutes()}`)
 
-    const [activeTab, setActiveTab] = useState<"orders" | "ordersToBeGiven" | "none">("none")
+    const [activeTab, setActiveTab] = useState<"orders" | "ordersToBeGiven" | "completed_Orders" | "none">("none")
     const [loading, setLoading] = useState(false)
 
     const currentTab = () => {
         if (activeTab === "orders") {
-            return <OrdersList />
+            return <OrdersList openCompletedOrders={() => setActiveTab("completed_Orders")} />
         } else if (activeTab === "ordersToBeGiven") {
             return <OrdersToBeGiven />
+        } else if (activeTab === "completed_Orders") {
+            return <Completed_Orders />
         } else {
             return null
         }
@@ -79,6 +81,7 @@ export default function Account({isLoggedIn, onLogout }: HeaderProps) {
         }
         fetchAvatar()
     }, [])
+
 
     return (
         <div className="Account">
