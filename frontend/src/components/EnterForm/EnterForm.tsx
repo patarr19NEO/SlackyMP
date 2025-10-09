@@ -11,6 +11,7 @@ export default function EnterForm({ onLoginSuccess }: EnterFormProps) {
     const [password, setPassword] = useState<string>("")
     const [loading, setLoading] = useState<boolean>(false)
     const [error, setError] = useState<string>()
+    const [code, setCode] = useState<string>("")
 
     const handleSubmit = async (e: React.MouseEvent) => {
         setLoading(true)
@@ -82,11 +83,11 @@ export default function EnterForm({ onLoginSuccess }: EnterFormProps) {
                 <div className="form-window">
                     <div className="form">
                         <div className="form-content">
-                            <h1>Enter</h1>
+                            <h1>Вход</h1>
                             <form>
                                 <input value={mail} onChange={handleMail} placeholder="Mail" type="email"/>
                                 <input value={password} onChange={handlePassword} placeholder="Password" type="password"/>
-                                <a onClick={handleForms}>Войти по кодом</a>
+                                <a onClick={handleForms}>Войти по кодy</a>
 
                                 <div className="error">
                                     <p>{error}</p>
@@ -94,13 +95,27 @@ export default function EnterForm({ onLoginSuccess }: EnterFormProps) {
                                 </div>
 
                             </form>
-                            <div className="go-btn" onClick={handleSubmit}>Go</div>
+                            <div className="go-btn" onClick={handleSubmit}>Вперед!</div>
                         </div>
                     </div>
                 </div>
             ) : codeEnteringForm ? (
                 <div className="enterBy-code__form_window">
-                    Вход по коду! тест
+                    <div className="form-code">
+                        <div className="form-code_content">
+                            <h1>Вход через код</h1>
+                            <form>
+                                <input value={code} onChange={(e) => setCode(e.target.value)} type="password" />
+
+                                <div className="error">
+                                    <p>{error}</p>
+                                    <p>{!loading ? "" : "Loading..."}</p>
+                                </div>
+
+                            </form>
+                            <div className="go-btn">Вперед!</div>
+                        </div>
+                    </div>
                 </div>
             ) : null}
         </>
