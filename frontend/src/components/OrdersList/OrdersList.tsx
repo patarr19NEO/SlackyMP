@@ -56,9 +56,10 @@ export default function OrdersList() {
     return(
         <div className="OrdersList">
             <h1 className="header-h1">Заказы к выдаче</h1>
+            <button>Показать выполненные заказы</button>
             {loading}
             <div className="alltables">
-                <div className="">
+                <div className="table-items">
                     {isNoOrders ? (<h1 className="noOrders-h1">Нету заказов😭</h1>) : (<div className="table-items">
                         <h2>№</h2>
                         <h2>ФИО</h2>
