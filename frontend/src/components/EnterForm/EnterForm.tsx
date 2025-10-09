@@ -17,12 +17,12 @@ export default function EnterForm({ onLoginSuccess }: EnterFormProps) {
         //setError(false)
         e.preventDefault()
         if (mail === "" || password === "" || !mail.includes("@") || mail.includes(" ") || password.includes(" ")) {
-            setError("Invalid input!")
+            setError("❌ Invalid input!")
             setLoading(false)
             return
         }
 
-        console.log("Sent data: " + mail + " " + password)
+        console.log("📫 Sent data: " + mail + " " + password)
         try {
             const response = await fetch("http://127.0.0.1:5000/api/users", {
                 method: "POST",
@@ -34,8 +34,8 @@ export default function EnterForm({ onLoginSuccess }: EnterFormProps) {
                     password: password,
                 })
             })
-            const data: any = await response.json() // mistake was here
-            console.log("got data: ", data)
+            const data: any = await response.json()
+            console.log("✔️ Got data: ", data)
 
             if (!response.ok) {
                 setError(data.message || "Login failed")
