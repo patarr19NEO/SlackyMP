@@ -14,7 +14,6 @@ export default function EnterForm({ onLoginSuccess }: EnterFormProps) {
 
     const handleSubmit = async (e: React.MouseEvent) => {
         setLoading(true)
-        //setError(false)
         e.preventDefault()
         if (mail === "" || password === "" || !mail.includes("@") || mail.includes(" ") || password.includes(" ")) {
             setError("❌ Invalid input!")
@@ -74,12 +73,15 @@ export default function EnterForm({ onLoginSuccess }: EnterFormProps) {
                         <form>
                             <input value={mail} onChange={handleMail} placeholder="Mail" type="email"/>
                             <input value={password} onChange={handlePassword} placeholder="Password" type="password"/>
+                            <a>Войти с кодом</a>
+
                             <div className="error">
                                 <p>{error}</p>
                                 <p>{!loading ? "" : "Loading..."}</p>
                             </div>
-                            <a onClick={handleSubmit}>Go</a>
+
                         </form>
+                        <div className="go-btn" onClick={handleSubmit}>Go</div>
                     </div>
                 </div>
             </div>
