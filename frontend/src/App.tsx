@@ -10,7 +10,12 @@ function App() {
     useEffect(() => {
         if (typeof window !== "undefined") {
             const loggedStatus = localStorage.getItem("isLoggedIn")
-            console.log(localStorage.getItem("user"), localStorage.getItem("isLoggedIn"))
+            if (localStorage.getItem("user") === null) {
+                console.log("❌ Нет авторизованных сотрудников")
+                return
+            }
+
+            console.log("✔️ Авторизованный сотрудник: ", localStorage.getItem("user"))
             setIsLoggedIn(loggedStatus === "true")
         }
     }, []);
