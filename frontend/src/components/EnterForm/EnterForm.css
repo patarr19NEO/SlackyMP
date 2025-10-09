@@ -1,6 +1,6 @@
 .form {
     width: 438px;
-    height: 344px;
+    height: 400px;
     background-color: #D9D9D9;
     border-radius: 20px;
 }
@@ -33,7 +33,7 @@ form input {
 }
 
 
-form a {
+.go-btn {
     width: 175px;
     height: 55px;
     background-color: #17331F;
@@ -45,7 +45,8 @@ form a {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: -20px;
+    margin-bottom: auto;
+    margin-top: 20px;
 }
 
 form p {
@@ -60,4 +61,11 @@ form p {
     justify-content: center;
     width: 100%;
     margin-top: -20px;
+}
+
+
+.form a {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
 }
