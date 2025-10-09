@@ -8,7 +8,7 @@
     flex-direction: column;
     width: 200px;
     text-align: center;
-    margin-top: -500px;
+    margin-top: 20px;
 }
 
 .tabs a {
@@ -26,9 +26,18 @@
     background-color: white;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     min-width: 300px;
+    position: static;
+    overflow-y: auto;
+    padding: 20px 0;
+
+}
+
+.logout_button {
+    margin-bottom: 20px;
+    margin-top: auto;
 }
 
 .logout_button button {
@@ -42,6 +51,7 @@
 .workspace {
     display: flex;
     flex-direction: row;
+    min-height: 100vh;
 }
 
 .profile {
@@ -58,4 +68,8 @@
     height: 200px;
     object-fit: cover;
     border-radius: 50%;
+}
+
+.current_tab {
+    flex: 1;
 }
