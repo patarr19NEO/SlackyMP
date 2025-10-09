@@ -69,3 +69,25 @@ form p {
     color: blue;
     cursor: pointer;
 }
+
+.form-code {
+    width: 438px;
+    height: 300px;
+    background-color: #D9D9D9;
+    border-radius: 20px;
+}
+
+.form-code_content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.enterBy-code__form_window {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: auto;
+    margin-top: 200px;
+}
