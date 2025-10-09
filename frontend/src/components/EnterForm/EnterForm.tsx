@@ -1,5 +1,5 @@
 import "./EnterForm.css"
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import * as React from "react";
 
 interface EnterFormProps {
@@ -64,27 +64,45 @@ export default function EnterForm({ onLoginSuccess }: EnterFormProps) {
         setPassword(e.target.value)
     }
 
+    const [defaultForm, setDefaultForm] = useState<boolean>(true)
+    const [codeEnteringForm, setCodeEnteringForm] = useState<boolean>(false)
+
+    useEffect(() => {
+        setDefaultForm(true)
+    }, []);
+
+    const handleForms = () => {
+        setCodeEnteringForm(true)
+        setDefaultForm(false)
+    }
+
     return (
         <>
-            <div className="form-window">
-                <div className="form">
-                    <div className="form-content">
-                        <h1>Enter</h1>
-                        <form>
-                            <input value={mail} onChange={handleMail} placeholder="Mail" type="email"/>
-                            <input value={password} onChange={handlePassword} placeholder="Password" type="password"/>
-                            <a>Войти с кодом</a>
+            {defaultForm ? (
+                <div className="form-window">
+                    <div className="form">
+                        <div className="form-content">
+                            <h1>Enter</h1>
+                            <form>
+                                <input value={mail} onChange={handleMail} placeholder="Mail" type="email"/>
+                                <input value={password} onChange={handlePassword} placeholder="Password" type="password"/>
+                                <a onClick={handleForms}>Войти по кодом</a>
 
-                            <div className="error">
-                                <p>{error}</p>
-                                <p>{!loading ? "" : "Loading..."}</p>
-                            </div>
+                                <div className="error">
+                                    <p>{error}</p>
+                                    <p>{!loading ? "" : "Loading..."}</p>
+                                </div>
 
-                        </form>
-                        <div className="go-btn" onClick={handleSubmit}>Go</div>
+                            </form>
+                            <div className="go-btn" onClick={handleSubmit}>Go</div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            ) : codeEnteringForm ? (
+                <div className="enterBy-code__form_window">
+                    Вход по коду! тест
+                </div>
+            ) : null}
         </>
     )
 }
