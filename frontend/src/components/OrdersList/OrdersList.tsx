@@ -1,7 +1,11 @@
 import "./OrdersList.css"
-import {useState, useEffect} from "react"
+import {useState, useEffect, JSX} from "react"
 
-export default function OrdersList() {
+interface Props {
+    openCompletedOrders: () => void
+}
+
+export default function OrdersList({ openCompletedOrders }: Props) {
     const [orders, setOrders] = useState<any[]>([])
     const [loading, setLoading] = useState<string>("")
     const [isNoOrders, setIsNoOrders] = useState<boolean>(false)
@@ -56,7 +60,7 @@ export default function OrdersList() {
     return(
         <div className="OrdersList">
             <h1 className="header-h1">Заказы к выдаче</h1>
-            <button>Показать выполненные заказы</button>
+            <button onClick={openCompletedOrders}>Показать выполненные заказы</button>
             {loading}
             <div className="alltables">
                 <div className="table-items">
