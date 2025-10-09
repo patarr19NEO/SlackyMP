@@ -179,3 +179,15 @@ qwerty1234
 emp2@mail.ru
 1234qwerty
 [MESSAGE] 2025-10-08 22:51:22.758713: server successfully got data in DataBase: emp2@mail.ru and 1234qwerty with code 200
+[INFO] 2025-10-08 22:57:23.872527: got data:
+yura@mail.ru
+qwerty1234
+[MESSAGE] 2025-10-08 22:57:23.873245: server successfully got data in DataBase: yura@mail.ru and qwerty1234 with code 200
+[INFO] 2025-10-08 22:57:45.934213: got data:
+emp2@mail.ru
+1234qwerty
+[MESSAGE] 2025-10-08 22:57:45.934813: server successfully got data in DataBase: emp2@mail.ru and 1234qwerty with code 200
+[INFO] 2025-10-09 19:40:13.539504: got data:
+yura@mail.ru
+qwerty1234
+[MESSAGE] 2025-10-09 19:40:13.540124: server successfully got data in DataBase: yura@mail.ru and qwerty1234 with code 200
