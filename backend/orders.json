@@ -14,7 +14,7 @@
           {
             "id": 2,
             "fio": "Ольга Патаридзе",
-            "status": "waiting",
+            "status": "completed",
             "name": "Веревки для вязания",
             "quantity": 4,
             "where": "A-1"
@@ -30,7 +30,7 @@
           {
             "id": 4,
             "fio": "Котен Котеныч",
-            "status": "waiting",
+            "status": "completed",
             "quantity": 15,
             "name": "Рыбка вкусная 1 кг",
             "where": "Б-1"
@@ -38,7 +38,7 @@
           {
             "id": 5,
             "fio": "Бабушка Ирина",
-            "status": "waiting",
+            "status": "completed",
             "name": "Нутелла для внучка",
             "quantity": 10,
             "where": "A-4"
@@ -46,7 +46,7 @@
           {
             "id": 6,
             "fio": "Дедушка Игорь",
-            "status": "waiting",
+            "status": "completed",
             "name": "Носки от Ольги Патаридзе",
             "quantity": 2,
             "where": "A-3"
@@ -54,7 +54,7 @@
           {
             "id": 7,
             "fio": "Тетя Аня",
-            "status": "waiting",
+            "status": "completed",
             "name": "Варенье",
             "quantity": 1,
             "where": "A-6"
@@ -62,7 +62,7 @@
           {
             "id": 8,
             "fio": "Брат Павла Патаридзе",
-            "status": "waiting",
+            "status": "completed",
             "name": "Гитара Электронная",
             "quantity": 1,
             "where": "A-5"
@@ -82,7 +82,7 @@
           {
             "id": 10,
             "fio": "Пользователь SlackyMP",
-            "status": "waiting",
+            "status": "completed",
             "name": "Худи Теплое",
             "quantity": 4,
             "where": "A-8"
@@ -90,7 +90,7 @@
           {
             "id": 11,
             "fio": "Пользователь SlackyMP",
-            "status": "waiting",
+            "status": "completed",
             "name": "Колонки Большие 2шт",
             "quantity": 1,
             "where": "Б-2"
