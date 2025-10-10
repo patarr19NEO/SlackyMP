@@ -1,6 +1,6 @@
 .form {
     width: 438px;
-    height: 400px;
+    height: 450px;
     background-color: #D9D9D9;
     border-radius: 20px;
 }
@@ -89,4 +89,24 @@ form p {
     align-items: center;
     margin-bottom: auto;
     margin-top: 200px;
+}
+
+.go-btn-code {
+    width: 175px;
+    height: 55px;
+    background-color: #17331F;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    color: #fff;
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: auto;
+    margin-top: 20px;
+}
+
+form input {
+    margin-top: 20px;
 }
