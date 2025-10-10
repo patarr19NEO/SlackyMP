@@ -22,7 +22,7 @@
           {
             "id": 3,
             "fio": "Павел Патаридзе",
-            "status": "waiting",
+            "status": "completed",
             "name": "Телевизор",
             "quantity": 1,
             "where": "Б-3"
@@ -74,7 +74,7 @@
           {
             "id": 9,
             "fio": "Пользователь SlackyMP",
-            "status": "waiting",
+            "status": "completed",
             "name": "Ручка 2шт",
             "quantity": 1,
             "where": "A-7"

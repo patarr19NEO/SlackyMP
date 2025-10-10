@@ -193,3 +193,5 @@ qwerty1234
 [MESSAGE] 2025-10-09 19:40:13.540124: server successfully got data in DataBase: yura@mail.ru and qwerty1234 with code 200
 [INFO] 2025-10-10 19:26:59.853739: got code: EMP-2_21hr-twoTH25
 [MESSAGE] 2025-10-10 19:26:59.857724: server successfully authenticated employee with code: EMP-2_21hr-twoTH25 - email: emp2@mail.ru with code 200
+[INFO] 2025-10-10 19:47:21.565255: got code: EMP-1_21hr-twoTH25
+[MESSAGE] 2025-10-10 19:47:21.565831: server successfully authenticated employee with code: EMP-1_21hr-twoTH25 - email: yura@mail.ru with code 200
