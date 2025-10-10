@@ -77,6 +77,53 @@ export default function EnterForm({ onLoginSuccess }: EnterFormProps) {
         setDefaultForm(false)
     }
 
+    const handleCodeFetch = async () => {
+        setLoading(true)
+        if (!code || code.length < 18) {
+            setError("❌ Invalid input!")
+            setLoading(false)
+            return
+        }
+
+        console.log("📫 Sent data: " + code)
+        setLoading(true)
+        try {
+            const response = await fetch("http://127.0.0.1:5000/api/users-code", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    code: code
+                })
+            })
+
+            const data: any = await response.json()
+            console.log("✔️ Got data: ", data)
+
+            if (!response.ok) {
+                setError(data.message || "Login failed")
+                alert(data.message)
+                setLoading(false)
+                return
+            }
+
+            console.log(data.message)
+            setLoading(false)
+            localStorage.setItem("user", data.user)
+            localStorage.setItem("isLoggedIn", "true")
+            onLoginSuccess()
+
+        } catch (err: any) {
+            setError(err.message)
+            alert("error!: " + err.message)
+            setLoading(false)
+        } finally {
+            setLoading(false)
+        }
+
+    }
+
     return (
         <>
             {defaultForm ? (
@@ -113,7 +160,7 @@ export default function EnterForm({ onLoginSuccess }: EnterFormProps) {
                                 </div>
 
                             </form>
-                            <div className="go-btn">Вперед!</div>
+                            <div onClick={handleCodeFetch} className="go-btn-code">Вперед!</div>
                         </div>
                     </div>
                 </div>
