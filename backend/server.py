@@ -52,6 +52,28 @@ def authenticate_employee(email, password):
         print(f"Error reading employees.json: {e}")
         return None
 
+def authenticate_by_code(code):
+    """Authenticate employee by their code from employees.json"""
+    try:
+        employees_data = readDB("employees.json")
+        employees = employees_data["epinfo"]["employees"]
+        
+        # Search through all employees to find matching code
+        for email, employee_data in employees.items():
+            if employee_data["code"] == code:
+                # Return employee data with email included
+                return {
+                    "email": email,
+                    "password": employee_data["password"],
+                    "code": employee_data["code"],
+                    "avatar_image": employee_data.get("avatar_image", "")
+                }
+        
+        return None  # No matching code found
+    except Exception as e:
+        print(f"Error reading employees.json: {e}")
+        return None
+
 logs_file = "logs.txt"
 
 def readDB(file):
@@ -249,6 +271,54 @@ def get_avatar():
         return jsonify({
             "success": False,
             "message": f"Server error: {e}"
+        }), 500
+
+@app.route("/api/users-code", methods=["POST"])
+def users_Code():
+    try:
+        data = request.get_json()
+
+        if not data or "code" not in data:
+            return jsonify({
+                "status": "error",
+                "message": "Code is required"
+            }), 400
+
+        code = data.get("code")
+
+        print(f"got code: {str(code)}")
+        with open(logs_file, "a") as file:
+            file.write(f"\n[INFO] {datetime.now()}: got code: {str(code)}")
+
+        # Use the code authentication function
+        employee = authenticate_by_code(code)
+
+        if employee:
+            with open(logs_file, "a") as file:
+                file.write(f"\n[MESSAGE] {datetime.now()}: server successfully authenticated employee with code: {code} - email: {employee['email']} with code 200")
+            return jsonify({
+                "status": "success",
+                "message": f"Server successfully authenticated employee with code: {code}",
+                "user": employee["email"],
+                "employee_email": employee["email"],
+                "employee_code": employee["code"],
+                "avatar_image": employee.get("avatar_image", "")
+            }), 200
+        else:
+            with open(logs_file, "a") as file:
+                file.write(f"\n[ERROR] {datetime.now()}: server could not find employee with code: {code} with code 404")
+            return jsonify({
+                "status": "failed",
+                "message": f"Server could not find employee with code: {code}"
+            }), 404
+
+    except Exception as err:
+        print("error ", err)
+        with open(logs_file, "a") as file:
+            file.write(f"\n[ERROR] {datetime.now()}: server failed to authenticate with code with error 500: {str(err)}")
+        return jsonify({
+            "status": "error",
+            "message": "Server failed to authenticate with code"
         }), 500
 
 if __name__ == "__main__":
