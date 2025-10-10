@@ -105,7 +105,7 @@ export default function EnterForm({ onLoginSuccess }: EnterFormProps) {
                         <div className="form-code_content">
                             <h1>Вход через код</h1>
                             <form>
-                                <input value={code} onChange={(e) => setCode(e.target.value)} type="password" />
+                                <input placeholder="Код" value={code} onChange={(e) => setCode(e.target.value)} type="password" />
 
                                 <div className="error">
                                     <p>{error}</p>
