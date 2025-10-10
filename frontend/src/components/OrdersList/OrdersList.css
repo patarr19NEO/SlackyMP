@@ -7,40 +7,91 @@ body {
     width: 100%;
     padding: 20px;
     box-sizing: border-box; /* Важно: padding не увеличивает общую ширину */
+    display: flex;
+    flex-direction: column;
 }
 
 /* Общий контейнер для всей таблицы */
 .alltables {
     width: 100%;
     overflow-x: auto; /* Добавляет горизонтальную прокрутку на маленьких экранах */
+    display: flex;
+    flex-direction: column;
 }
 
 /* Шапка таблицы и карточки используют одинаковую сетку */
 .table-items, .order-card {
     display: grid;
-    /* Колонки: №, ФИО, Статус, Место */
-    grid-template-columns: minmax(80px, 1fr) minmax(200px, 2fr) minmax(200px, 2fr) minmax(150px, 1.5fr) minmax(100px, 1fr);
+    /* Колонки: №, ФИО, Товар, Статус, Место - ТОЧНО одинаковые размеры */
+    grid-template-columns: 80px 200px 200px 150px 150px;
     gap: 20px;
     align-items: center;
     width: 100%;
     padding: 15px 20px;
-    box-sizing: border-box; /* Важно: padding не увеличивает общую ширину */
+    box-sizing: border-box;
+    min-width: fit-content;
+    color: black;
 }
 
 .table-items {
     font-weight: bold;
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+    margin-bottom: 10px;
 }
 
 .order-card {
     background-color: white;
     color: black;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: box-shadow 0.2s ease;
+}
+
+.order-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
 .table {
     display: flex;
     flex-direction: column;
     width: 100%;
+    gap: 5px;
+}
+
+/* Responsive design для маленьких экранов */
+@media (max-width: 768px) {
+    .table-items, .order-card {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        text-align: left;
+    }
+    
+    .order-card {
+        padding: 20px;
+    }
+    
+    /* Добавляем лейблы для мобильной версии */
+    .order-card > * {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .order-card > *:last-child {
+        border-bottom: none;
+    }
+    
+    .order-id::before { content: "№: "; font-weight: bold; }
+    .order-fio::before { content: "ФИО: "; font-weight: bold; }
+    .product\(quan-ty\)::before { content: "Товар: "; font-weight: bold; }
+    .order-status::before { content: "Статус: "; font-weight: bold; }
+    .where-order-is::before { content: "Место: "; font-weight: bold; }
+    
+    .table-items {
+        display: none; /* Скрываем заголовки на мобильных */
+    }
 }

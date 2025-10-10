@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react"
+import "./Completed_Orders.css"
 
 interface Order {
     id: number
