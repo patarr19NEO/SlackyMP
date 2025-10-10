@@ -26,7 +26,7 @@ export default function OrdersToBeGiven() {
                 body: JSON.stringify({ employee_email: employeeEmail })
             })
 
-            const data = await response.json()
+            //const data = await response.json()
 
             if (response.ok) {
                 alert(`✔️ Заказ выдан`)

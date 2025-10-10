@@ -1,5 +1,5 @@
 import "./OrdersList.css"
-import {useState, useEffect, JSX} from "react"
+import {useState, useEffect} from "react"
 
 interface Props {
     openCompletedOrders: () => void
