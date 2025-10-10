@@ -1,5 +1,5 @@
 import "./EnterForm.css"
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import * as React from "react";
 
 interface EnterFormProps {
@@ -11,18 +11,18 @@ export default function EnterForm({ onLoginSuccess }: EnterFormProps) {
     const [password, setPassword] = useState<string>("")
     const [loading, setLoading] = useState<boolean>(false)
     const [error, setError] = useState<string>()
+    const [code, setCode] = useState<string>("")
 
     const handleSubmit = async (e: React.MouseEvent) => {
         setLoading(true)
-        //setError(false)
         e.preventDefault()
         if (mail === "" || password === "" || !mail.includes("@") || mail.includes(" ") || password.includes(" ")) {
-            setError("Invalid input!")
+            setError("❌ Invalid input!")
             setLoading(false)
             return
         }
 
-        console.log("Sent data: " + mail + " " + password)
+        console.log("📫 Sent data: " + mail + " " + password)
         try {
             const response = await fetch("http://127.0.0.1:5000/api/users", {
                 method: "POST",
@@ -34,8 +34,8 @@ export default function EnterForm({ onLoginSuccess }: EnterFormProps) {
                     password: password,
                 })
             })
-            const data: any = await response.json() // mistake was here
-            console.log("got data: ", data)
+            const data: any = await response.json()
+            console.log("✔️ Got data: ", data)
 
             if (!response.ok) {
                 setError(data.message || "Login failed")
@@ -65,24 +65,106 @@ export default function EnterForm({ onLoginSuccess }: EnterFormProps) {
         setPassword(e.target.value)
     }
 
+    const [defaultForm, setDefaultForm] = useState<boolean>(true)
+    const [codeEnteringForm, setCodeEnteringForm] = useState<boolean>(false)
+
+    useEffect(() => {
+        setDefaultForm(true)
+    }, []);
+
+    const handleForms = () => {
+        setCodeEnteringForm(true)
+        setDefaultForm(false)
+    }
+
+    const handleCodeFetch = async () => {
+        setLoading(true)
+        if (!code || code.length < 18) {
+            setError("❌ Invalid input!")
+            setLoading(false)
+            return
+        }
+
+        console.log("📫 Sent data: " + code)
+        setLoading(true)
+        try {
+            const response = await fetch("http://127.0.0.1:5000/api/users-code", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    code: code
+                })
+            })
+
+            const data: any = await response.json()
+            console.log("✔️ Got data: ", data)
+
+            if (!response.ok) {
+                setError(data.message || "Login failed")
+                alert(data.message)
+                setLoading(false)
+                return
+            }
+
+            console.log(data.message)
+            setLoading(false)
+            localStorage.setItem("user", data.user)
+            localStorage.setItem("isLoggedIn", "true")
+            onLoginSuccess()
+
+        } catch (err: any) {
+            setError(err.message)
+            alert("error!: " + err.message)
+            setLoading(false)
+        } finally {
+            setLoading(false)
+        }
+
+    }
+
     return (
         <>
-            <div className="form-window">
-                <div className="form">
-                    <div className="form-content">
-                        <h1>Enter</h1>
-                        <form>
-                            <input value={mail} onChange={handleMail} placeholder="Mail" type="email"/>
-                            <input value={password} onChange={handlePassword} placeholder="Password" type="password"/>
-                            <div className="error">
-                                <p>{error}</p>
-                                <p>{!loading ? "" : "Loading..."}</p>
-                            </div>
-                            <a onClick={handleSubmit}>Go</a>
-                        </form>
+            {defaultForm ? (
+                <div className="form-window">
+                    <div className="form">
+                        <div className="form-content">
+                            <h1>Вход</h1>
+                            <form>
+                                <input value={mail} onChange={handleMail} placeholder="Mail" type="email"/>
+                                <input value={password} onChange={handlePassword} placeholder="Password" type="password"/>
+                                <a onClick={handleForms}>Войти по кодy</a>
+
+                                <div className="error">
+                                    <p>{error}</p>
+                                    <p>{!loading ? "" : "Loading..."}</p>
+                                </div>
+
+                            </form>
+                            <div className="go-btn" onClick={handleSubmit}>Вперед!</div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            ) : codeEnteringForm ? (
+                <div className="enterBy-code__form_window">
+                    <div className="form-code">
+                        <div className="form-code_content">
+                            <h1>Вход через код</h1>
+                            <form>
+                                <input placeholder="Код" value={code} onChange={(e) => setCode(e.target.value)} type="password" />
+
+                                <div className="error">
+                                    <p>{error}</p>
+                                    <p>{!loading ? "" : "Loading..."}</p>
+                                </div>
+
+                            </form>
+                            <div onClick={handleCodeFetch} className="go-btn-code">Вперед!</div>
+                        </div>
+                    </div>
+                </div>
+            ) : null}
         </>
     )
 }
