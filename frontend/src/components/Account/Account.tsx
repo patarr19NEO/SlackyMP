@@ -82,32 +82,59 @@ export default function Account({ onLogout }: HeaderProps) {
         fetchAvatar()
     }, [])
 
+    //console.log(window.innerWidth)
+
+    const [mobileInterface, setMobileInterface] = useState(false)
+    const [desktopInterface, setDesktopInterface] = useState(true)
+
+    useEffect(() => {
+        if (window.innerWidth <= 768) {
+            console.log("📱 Телефон")
+            setMobileInterface(true)
+            setDesktopInterface(false)
+        } else {
+            console.log("💻 Десктоп")
+            setDesktopInterface(true)
+            setMobileInterface(false)
+        }
+    }, [])
 
     return (
         <div className="Account">
             {/*<h1>Hi, {localStorage.getItem("user")}</h1>*/}
 
             <div className="workspace">
-                <div className="left_pannel">
-                    <div className="profile">
-                        <img 
-                            src={avatarImg || "..src/assets/default-avatar.png"}
-                            alt="logo-avatar" 
-                            onError={(e) => {
-                                (e.target as HTMLImageElement).src = "/default-avatar.png"
-                            }} 
-                        />
-                        <h3>{localStorage.getItem("user")?.replace(/['"]+/g, '')}</h3>
-                        {loading && <p>Loading avatar...</p>}
+                {desktopInterface ? (
+                    <div className="left_pannel">
+                        <div className="profile">
+                            <img
+                                src={avatarImg || "..src/assets/default-avatar.png"}
+                                alt="logo-avatar"
+                                onError={(e) => {
+                                    (e.target as HTMLImageElement).src = "/default-avatar.png"
+                                }}
+                            />
+                            <h3>{localStorage.getItem("user")?.replace(/['"]+/g, '')}</h3>
+                            {loading && <p>Loading avatar...</p>}
+                        </div>
+                        <div className="tabs">
+                            <a onClick={() => setActiveTab("orders")} >Заказы к выдачи</a>
+                            <a onClick={() => setActiveTab("ordersToBeGiven")} >Выдать заказ</a>
+                        </div>
+                        <div className="logout_button">
+                            <button onClick={logout}>LogOut</button>
+                        </div>
                     </div>
-                    <div className="tabs">
-                        <a onClick={() => setActiveTab("orders")} >Заказы к выдачи</a>
-                        <a onClick={() => setActiveTab("ordersToBeGiven")} >Выдать заказ</a>
-                    </div>
-                    <div className="logout_button">
-                        <button onClick={logout}>LogOut</button>
-                    </div>
-                </div>
+                ) : mobileInterface ? (
+                    <>
+                        <h1>МОБИЛЬНЫЙ ИНТЕРФЕЙС</h1>
+                        <div className="tabs">
+                            <a onClick={() => setActiveTab("orders")} >Заказы к выдачи</a>
+                            <a onClick={() => setActiveTab("ordersToBeGiven")} >Выдать заказ</a>
+                        </div>
+                    </>
+
+                ) : null}
 
                 <div className="current_tab">
                     {currentTab()}
