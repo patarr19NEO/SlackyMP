@@ -46,7 +46,7 @@
           {
             "id": 6,
             "fio": "Дедушка Игорь",
-            "status": "completed",
+            "status": "waiting",
             "name": "Носки от Ольги Патаридзе",
             "quantity": 2,
             "where": "A-3"
@@ -55,14 +55,14 @@
             "id": 7,
             "fio": "Тетя Аня",
             "status": "completed",
-            "name": "Варенье",
+            "name": "waiting",
             "quantity": 1,
             "where": "A-6"
           },
           {
             "id": 8,
             "fio": "Брат Павла Патаридзе",
-            "status": "completed",
+            "status": "waiting",
             "name": "Гитара Электронная",
             "quantity": 1,
             "where": "A-5"
