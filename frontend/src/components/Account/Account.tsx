@@ -84,14 +84,17 @@ export default function Account({ onLogout }: HeaderProps) {
 
     //console.log(window.innerWidth)
 
-    const [mobileInterface, setMobileInterface] = useState(false)
+    const [mobileInterface, setMobileInterface] = useState(false)     /* здесь переключалки интерфейса */
     const [desktopInterface, setDesktopInterface] = useState(true)
 
     useEffect(() => {
         if (window.innerWidth <= 768) {
             console.log("📱 Телефон")
             setMobileInterface(true)
-            setDesktopInterface(false)
+            setDesktopInterface(false)     /*
+                                                   здесь вычисляем что у нас, десктоп или телефон.
+                                                   если телефон - включаем мобильный интерфей, если десктоп - включаем десктоп
+                                                  */
         } else {
             console.log("💻 Десктоп")
             setDesktopInterface(true)
@@ -103,7 +106,7 @@ export default function Account({ onLogout }: HeaderProps) {
         <div className="Account">
             {/*<h1>Hi, {localStorage.getItem("user")}</h1>*/}
 
-            <div className="workspace">
+            <div className="workspace">     {/* если включалка стоит на десктопе - показываем интерфейс десктопа */}
                 {desktopInterface ? (
                     <div className="left_pannel">
                         <div className="profile">
@@ -134,7 +137,7 @@ export default function Account({ onLogout }: HeaderProps) {
                         </div>
                     </>
 
-                ) : null}
+                ) : null} {/*если включалка на мобайл - показываем мобайл интерфейс(вверху)*/}
 
                 <div className="current_tab">
                     {currentTab()}
