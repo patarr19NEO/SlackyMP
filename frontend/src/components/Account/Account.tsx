@@ -9,7 +9,7 @@ interface HeaderProps {
     isLoggedIn: boolean;
 }
 
-export default function Account({isLoggedIn, onLogout }: HeaderProps) {
+export default function Account({ onLogout }: HeaderProps) {
 
     const [activeTab, setActiveTab] = useState<"orders" | "ordersToBeGiven" | "completed_Orders" | "none">("none")
     const [loading, setLoading] = useState(false)
