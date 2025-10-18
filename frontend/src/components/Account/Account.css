@@ -77,7 +77,8 @@
 .mobile {
     display: flex;
     flex-direction: column;
-    width: 100%; /* добавить */
+    width: 90%; /* добавить */
+    overflow-x: hidden;
 }
 
 .btns {
