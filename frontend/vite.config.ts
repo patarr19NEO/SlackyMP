@@ -6,5 +6,8 @@ export default defineConfig({
   build: {
     outDir: 'dist', // Явно указываем
     emptyOutDir: true // Очищаем перед сборкой
+  },
+  server: {
+      allowedHosts: ['outspokenly-engaged-redstart.cloudpub.ru']
   }
 })
