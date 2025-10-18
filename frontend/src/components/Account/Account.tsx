@@ -108,40 +108,47 @@ export default function Account({ onLogout }: HeaderProps) {
 
             <div className="workspace">     {/* если включалка стоит на десктопе - показываем интерфейс десктопа */}
                 {desktopInterface ? (
-                    <div className="left_pannel">
-                        <div className="profile">
-                            <img
-                                src={avatarImg || "..src/assets/default-avatar.png"}
-                                alt="logo-avatar"
-                                onError={(e) => {
-                                    (e.target as HTMLImageElement).src = "/default-avatar.png"
-                                }}
-                            />
-                            <h3>{localStorage.getItem("user")?.replace(/['"]+/g, '')}</h3>
-                            {loading && <p>Loading avatar...</p>}
+                    <>
+                        <div className="left_pannel">
+                            <div className="profile">
+                                <img
+                                    src={avatarImg || "..src/assets/default-avatar.png"}
+                                    alt="logo-avatar"
+                                    onError={(e) => {
+                                        (e.target as HTMLImageElement).src = "/default-avatar.png"
+                                    }}
+                                />
+                                <h3>{localStorage.getItem("user")?.replace(/['"]+/g, '')}</h3>
+                                {loading && <p>Loading avatar...</p>}
+                            </div>
+                            <div className="tabs">
+                                <a onClick={() => setActiveTab("orders")} >Заказы к выдачи</a>
+                                <a onClick={() => setActiveTab("ordersToBeGiven")} >Выдать заказ</a>
+                            </div>
+                            <div className="logout_button">
+                                <button onClick={logout}>LogOut</button>
+                            </div>
                         </div>
-                        <div className="tabs">
-                            <a onClick={() => setActiveTab("orders")} >Заказы к выдачи</a>
-                            <a onClick={() => setActiveTab("ordersToBeGiven")} >Выдать заказ</a>
+                        <div className="current_tab">
+                            {currentTab()}
                         </div>
-                        <div className="logout_button">
-                            <button onClick={logout}>LogOut</button>
-                        </div>
-                    </div>
+                    </>
                 ) : mobileInterface ? (
                     <>
-                        <h1>МОБИЛЬНЫЙ ИНТЕРФЕЙС</h1>
-                        <div className="tabs">
-                            <a onClick={() => setActiveTab("orders")} >Заказы к выдачи</a>
-                            <a onClick={() => setActiveTab("ordersToBeGiven")} >Выдать заказ</a>
+                        <div className="mobile">
+                            <div className="btns">
+                                <div className="tabs-mob">
+                                    <a onClick={() => setActiveTab("orders")} >Заказы к выдачи</a>
+                                    <a onClick={() => setActiveTab("ordersToBeGiven")} >Выдать заказ</a>
+                                </div>
+                            </div>
+                            <div className="current_tab">
+                                {currentTab()}
+                            </div>
                         </div>
                     </>
 
                 ) : null} {/*если включалка на мобайл - показываем мобайл интерфейс(вверху)*/}
-
-                <div className="current_tab">
-                    {currentTab()}
-                </div>
             </div>
         </div>
     )
