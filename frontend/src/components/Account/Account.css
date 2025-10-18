@@ -73,3 +73,32 @@
 .current_tab {
     flex: 1;
 }
+
+.mobile {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* добавить */
+}
+
+.btns {
+    display: flex;
+    justify-content: center;
+    width: 100%; /* добавить */
+}
+
+.tabs-mob {
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center; /* добавить */
+    width: auto; /* изменить с 200px */
+}
+
+.tabs-mob a {
+     cursor: pointer;
+     padding: 5px;
+     background-color: #D9D9D9;
+     color: black;
+     border-radius: 5px;
+ }

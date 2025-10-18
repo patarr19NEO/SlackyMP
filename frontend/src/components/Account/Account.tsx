@@ -9,7 +9,7 @@ interface HeaderProps {
     isLoggedIn: boolean;
 }
 
-export default function Account({isLoggedIn, onLogout }: HeaderProps) {
+export default function Account({ onLogout }: HeaderProps) {
 
     const [activeTab, setActiveTab] = useState<"orders" | "ordersToBeGiven" | "completed_Orders" | "none">("none")
     const [loading, setLoading] = useState(false)
@@ -82,36 +82,73 @@ export default function Account({isLoggedIn, onLogout }: HeaderProps) {
         fetchAvatar()
     }, [])
 
+    //console.log(window.innerWidth)
+
+    const [mobileInterface, setMobileInterface] = useState(false)     /* здесь переключалки интерфейса */
+    const [desktopInterface, setDesktopInterface] = useState(true)
+
+    useEffect(() => {
+        if (window.innerWidth <= 768) {
+            console.log("📱 Телефон")
+            setMobileInterface(true)
+            setDesktopInterface(false)     /*
+                                                   здесь вычисляем что у нас, десктоп или телефон.
+                                                   если телефон - включаем мобильный интерфей, если десктоп - включаем десктоп
+                                                  */
+        } else {
+            console.log("💻 Десктоп")
+            setDesktopInterface(true)
+            setMobileInterface(false)
+        }
+    }, [])
 
     return (
         <div className="Account">
             {/*<h1>Hi, {localStorage.getItem("user")}</h1>*/}
 
-            <div className="workspace">
-                <div className="left_pannel">
-                    <div className="profile">
-                        <img 
-                            src={avatarImg || "..src/assets/default-avatar.png"}
-                            alt="logo-avatar" 
-                            onError={(e) => {
-                                (e.target as HTMLImageElement).src = "/default-avatar.png"
-                            }} 
-                        />
-                        <h3>{localStorage.getItem("user")?.replace(/['"]+/g, '')}</h3>
-                        {loading && <p>Loading avatar...</p>}
-                    </div>
-                    <div className="tabs">
-                        <a onClick={() => setActiveTab("orders")} >Заказы к выдачи</a>
-                        <a onClick={() => setActiveTab("ordersToBeGiven")} >Выдать заказ</a>
-                    </div>
-                    <div className="logout_button">
-                        <button onClick={logout}>LogOut</button>
-                    </div>
-                </div>
+            <div className="workspace">     {/* если включалка стоит на десктопе - показываем интерфейс десктопа */}
+                {desktopInterface ? (
+                    <>
+                        <div className="left_pannel">
+                            <div className="profile">
+                                <img
+                                    src={avatarImg || "..src/assets/default-avatar.png"}
+                                    alt="logo-avatar"
+                                    onError={(e) => {
+                                        (e.target as HTMLImageElement).src = "/default-avatar.png"
+                                    }}
+                                />
+                                <h3>{localStorage.getItem("user")?.replace(/['"]+/g, '')}</h3>
+                                {loading && <p>Loading avatar...</p>}
+                            </div>
+                            <div className="tabs">
+                                <a onClick={() => setActiveTab("orders")} >Заказы к выдачи</a>
+                                <a onClick={() => setActiveTab("ordersToBeGiven")} >Выдать заказ</a>
+                            </div>
+                            <div className="logout_button">
+                                <button onClick={logout}>LogOut</button>
+                            </div>
+                        </div>
+                        <div className="current_tab">
+                            {currentTab()}
+                        </div>
+                    </>
+                ) : mobileInterface ? (
+                    <>
+                        <div className="mobile">
+                            <div className="btns">
+                                <div className="tabs-mob">
+                                    <a onClick={() => setActiveTab("orders")} >Заказы к выдачи</a>
+                                    <a onClick={() => setActiveTab("ordersToBeGiven")} >Выдать заказ</a>
+                                </div>
+                            </div>
+                            <div className="current_tab">
+                                {currentTab()}
+                            </div>
+                        </div>
+                    </>
 
-                <div className="current_tab">
-                    {currentTab()}
-                </div>
+                ) : null} {/*если включалка на мобайл - показываем мобайл интерфейс(вверху)*/}
             </div>
         </div>
     )
