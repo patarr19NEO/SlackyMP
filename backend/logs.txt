@@ -221,3 +221,7 @@ qwerty1234
 yura@mail.ru
 qwerty1234
 [MESSAGE] 2025-10-18 21:51:55.070899: server successfully got data in DataBase: yura@mail.ru and qwerty1234 with code 200
+[INFO] 2025-10-18 22:20:43.382367: got data:
+yura@mail.ru
+qwerty1234
+[MESSAGE] 2025-10-18 22:20:43.382808: server successfully got data in DataBase: yura@mail.ru and qwerty1234 with code 200
