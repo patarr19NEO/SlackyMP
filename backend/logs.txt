@@ -225,3 +225,13 @@ qwerty1234
 yura@mail.ru
 qwerty1234
 [MESSAGE] 2025-10-18 22:20:43.382808: server successfully got data in DataBase: yura@mail.ru and qwerty1234 with code 200
+[INFO] 2025-11-13 21:28:00.452126: got data:
+yura@mail.ru
+qwerty12345
+[ERROR] 2025-11-13 21:28:00.452935: server not found data in DataBase: yura@mail.ru and qwerty12345 with code 404
+[INFO] 2025-11-13 21:28:04.582671: got data:
+yura@mail.ru
+qwerty1234
+[MESSAGE] 2025-11-13 21:28:04.583323: server successfully got data in DataBase: yura@mail.ru and qwerty1234 with code 200
+[INFO] 2025-11-13 21:29:11.679852: got code: EMP-2_21hr-twoTH25
+[MESSAGE] 2025-11-13 21:29:11.680451: server successfully authenticated employee with code: EMP-2_21hr-twoTH25 - email: emp2@mail.ru with code 200

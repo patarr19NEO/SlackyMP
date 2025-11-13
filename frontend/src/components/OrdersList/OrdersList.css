@@ -62,7 +62,21 @@ body {
 
 /* Responsive design для маленьких экранов */
 @media (max-width: 768px) {
-    .table-items, .order-card {
+    .alltables {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    .table-items {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 5px;
+        font-size: 14px;
+        padding: 10px;
+    }
+    
+    .order-card {
         grid-template-columns: 1fr;
         gap: 10px;
         text-align: left;
@@ -90,8 +104,4 @@ body {
     .product\(quan-ty\)::before { content: "Товар: "; font-weight: bold; }
     .order-status::before { content: "Статус: "; font-weight: bold; }
     .where-order-is::before { content: "Место: "; font-weight: bold; }
-    
-    .table-items {
-        display: none; /* Скрываем заголовки на мобильных */
-    }
 }
